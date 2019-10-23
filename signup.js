@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import './signup.css';
 
 class signup extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: null,
+            lastName: null,
+            email: null,
+            password: null,
+            formErrors: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+            }
+        };
+    }
     render() {
         return (
             <div className="wrapper">
