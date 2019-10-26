@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Terminal from 'terminal-in-react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  showMsg = () => 'Hello World'
+
+  render() {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh"
+        }}
+      >
+        <Terminal
+          color='yellow'
+          backgroundColor='black'
+          barColor='black'
+          style={{ fontWeight: "bold", fontSize: "1em" }}
+          commandPassThrough={(cmd, print) => {
+            // do something async
+            print(`You sent '${cmd} to the server!'`);
+          }}
+          startState={'closed'}
+          closedMessage={'Welcome to Jam Session! Click the icon to connect to the server'}
+          closedTitle={'Jam Session Landing Page'}
+          msg='Jam Session (Python).'
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
