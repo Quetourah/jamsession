@@ -5,3 +5,8 @@
 - an app for anyone who loves music and are ready to kick off their musical journey online
 
 
+### Local Development:
+1. Clone repo
+1. `cd app`
+1. `yarn install`
+1. `yarn start`
