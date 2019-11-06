@@ -67,7 +67,7 @@ class CodeEditor extends React.Component {
         <hr />
         <MonacoEditor
           height="400"
-          language="javascript"
+          language="python"
           value={code}
           options={options}
           onChange={this.onChange}
