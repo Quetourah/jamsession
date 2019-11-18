@@ -1,8 +1,7 @@
-
 import React from "react";
-import "./Profile.css";
+import "./Coder.css";
 
-export default function Profile() {
+export default function Coder() {
     return (
         <div>
             <h1>Hello World</h1>
