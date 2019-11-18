@@ -1,9 +1,14 @@
 Server.default.waitForBoot({
 
-FoxDot.start;
 b = Buffer.alloc(s,44100 * 2, 2);
 
 // play a demo sound
+// Quarks.install("FoxDot");
+// FoxDot.start;
+
+Quarks.install("https://github.com/Qirky/FoxDotQuark.git");
+Quarks.install("https://github.com/supercollider-quarks/BatLib.git");
+FoxDot.start;
 
 SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
     var left, right;

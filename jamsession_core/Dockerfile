@@ -9,7 +9,7 @@ RUN apt-get update && \
 	add-apt-repository -y ppa:supercollider/ppa && \
 	add-apt-repository -y multiverse && \
 	apt-get update && \
-    apt-get install -y icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb curl python-pip xvfb && \
+    apt-get install -y git cmake icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb curl python-pip xvfb && \
     apt-get clean
 
 RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz && \
