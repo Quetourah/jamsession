@@ -33,7 +33,10 @@ COPY startup.scd /root/.config/SuperCollider/startup.scd
 COPY radio.sc /radio.sc
 
 COPY Procfile Procfile
-COPY foxsamply.sh foxsamply.sh
+COPY foxsamply.sh /foxsamply.sh
+COPY foxdot.scd /foxdot.scd
+
+# RUN xvfb-run -a sclang /foxdot.scd
 
 #RUN sclang FoxDot.start
 
@@ -52,3 +55,4 @@ RUN mv /etc/security/limits.d/audio.conf.disabled /etc/security/limits.d/audio.c
 	usermod -a -G audio root
 
 CMD ["forego", "start"]
+# CMD ["sh", "foxsamply.sh"]

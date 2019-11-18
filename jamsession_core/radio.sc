@@ -8,7 +8,7 @@ b = Buffer.alloc(s,44100 * 2, 2);
 
 Quarks.install("https://github.com/Qirky/FoxDotQuark.git");
 Quarks.install("https://github.com/supercollider-quarks/BatLib.git");
-FoxDot.start;
+// FoxDot.start;
 
 SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
     var left, right;
@@ -21,5 +21,6 @@ SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
         PingPong.ar(bufnum, [left,right], delayTime, feedback, 1)
     )
 }).play(s,[\out, 0, \bufnum, b.bufnum,\feedback,0.5,\delayTime,0.1]);
-
+FoxDot.start;
 });
+
