@@ -10,3 +10,6 @@
 1. `cd app`
 1. `yarn install`
 1. `yarn start`
+
+### Starting the Core Service:
+1. See README.MD inside `jamsession_core`
