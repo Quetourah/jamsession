@@ -9,7 +9,7 @@ RUN apt-get update && \
 	add-apt-repository -y ppa:supercollider/ppa && \
 	add-apt-repository -y multiverse && \
 	apt-get update && \
-    apt-get install -y icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb curl python-pip && \
+    apt-get install -y icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb curl python-pip xvfb && \
     apt-get clean
 
 RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz && \
@@ -17,6 +17,8 @@ RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-
 	rm forego.tgz && \
 	mv forego /usr/bin/forego && \
 	chmod +x /usr/bin/forego
+
+ENV DISPLAY :0
 
 COPY asoundrc /root/.asoundrc
 
@@ -29,7 +31,17 @@ COPY radio.sc /radio.sc
 COPY Procfile Procfile
 
 RUN pip install FoxDot
-RUN sclang FoxDot.start
+#RUN sclang FoxDot.start
+
+## Bypassing video output for sclang
+#RUN export DISPLAY=:0.0
+#COPY supercolliderStandaloneRPI2 /supercolliderStandaloneRPI2
+#RUN cd /supercolliderStandaloneRPI2
+#RUN sclang -a -l /supercolliderStandaloneRPI2/sclang.yaml
+
+RUN Xvfb :0 -ac -screen 0 1280x1024x16 &
+
+RUN echo FoxDot.start >/tmp/g && sclang /tmp/g &
 
 EXPOSE 8000
 RUN mv /etc/security/limits.d/audio.conf.disabled /etc/security/limits.d/audio.conf && \

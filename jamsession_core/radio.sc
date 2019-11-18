@@ -1,5 +1,6 @@
 Server.default.waitForBoot({
 
+FoxDot.start;
 b = Buffer.alloc(s,44100 * 2, 2);
 
 // play a demo sound
