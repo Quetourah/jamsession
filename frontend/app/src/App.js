@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Nav} from 'react-bootstrap';
 
 import Routes from "./Routes";
-import Profile from "./containers/Profile";
+//import Profile from "./containers/Profile";
+import Coder from "./containers/Coder";
 import "./App.css";
 
 
@@ -16,7 +17,7 @@ class App extends Component
     super();
     this.state = {
       data: '',
-      logged: false
+      logged: true
     };
   }
 
@@ -57,7 +58,7 @@ class App extends Component
    
       return (
         <div>
-        <Profile/>
+        <Coder/>
         </div>
       )
     
@@ -86,7 +87,7 @@ class App extends Component
       >
         {(this.renderMainScreen()) || (this.renderLandingMessage())}
       </div>**/
-       <div className="profile-app container" >
+       <div className="profile-app container">
       {this.renderProfileScreen()}
 
       </div>

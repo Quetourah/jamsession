@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import * as monaco from 'monaco-editor'
+
+monaco.editor.create(document.getElementById('root'), {
+  value: 'console.log("Hello, world")',
+  language: 'python'
+});
 
 ReactDOM.render(
     <Router>
