@@ -1,78 +1,165 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl,FormLabel } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import {HelpBlock,FormGroup,FormControl,ControlLabel} from "react-bootstrap";
+import { Auth } from "aws-amplify";
+import LoaderButton from "../components/LoaderButton";
 import "./Signup.css";
 
-export default function Singup(props) {
-  const [first, setFirst] = useState("");
-  const [last, setLast] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+export default class Signup extends Component {
+  constructor(props) {
+    super(props);
 
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
+    this.state = {
+      isLoading: false,
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
+      confirmationCode: "",
+      newUser: null
+    };
   }
 
-  function handleSubmit(event) {
+  validateForm() {
+    return (
+      this.state.email.length > 0 &&
+      this.state.username.length>0 &&
+      this.state.password.length > 0 &&
+      this.state.password === this.state.confirmPassword
+    );
+  }
+
+  validateConfirmationForm() {
+    return this.state.confirmationCode.length > 0;
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleSubmit = async event => {
     event.preventDefault();
+
+    this.setState({ isLoading: true });
+
+    try {
+      const newUser = await Auth.signUp({
+        username: this.state.username,
+        password: this.state.password, 
+        attributes: {email: this.state.email}
+      });
+      this.setState({
+        newUser
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+
+    this.setState({ isLoading: false });
   }
 
-  return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
+  handleConfirmationSubmit = async event => {
+    event.preventDefault();
 
-      <FormGroup controlId="first" bsSize="large">
-          <FormLabel>First Name</FormLabel>
+    this.setState({ isLoading: true });
+
+    try {
+      await Auth.confirmSignUp(this.state.email, this.state.username, this.state.confirmationCode);
+      await Auth.signIn(this.state.username, this.state.password);
+
+      this.props.userHasAuthenticated(true);
+      this.props.history.push("/");
+    } catch (e) {
+      alert(e.message);
+      this.setState({ isLoading: false });
+    }
+  }
+
+  renderConfirmationForm() {
+    return (
+      <form onSubmit={this.handleConfirmationSubmit}>
+        <FormGroup controlId="confirmationCode" bsSize="large">
+          <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
             autoFocus
-            type="text"
-            value={first}
-            onChange={e => setFirst(e.target.value)}
+            type="tel"
+            value={this.state.confirmationCode}
+            onChange={this.handleChange}
           />
+          <HelpBlock>Please check your email for the code.</HelpBlock>
         </FormGroup>
-        <FormGroup controlId="last" bsSize="large">
-          <FormLabel>Last Name</FormLabel>
-          <FormControl
-            autoFocus
-            type="text"
-            value={last}
-            onChange={e => setLast(e.target.value)}
-          />
-        </FormGroup>
+        <LoaderButton
+          block
+          bsSize="large"
+          disabled={!this.validateConfirmationForm()}
+          type="submit"
+          isLoading={this.state.isLoading}
+          text="Verify"
+          loadingText="Verifying…"
+        />
+      </form>
+    );
+  }
+
+  renderForm() {
+    return (
+      <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
-          <FormLabel>Email</FormLabel>
+          <ControlLabel>Email</ControlLabel>
           <FormControl
             autoFocus
             type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            value={this.state.email}
+            onChange={this.handleChange}
           />
         </FormGroup>
-        
-        <FormGroup controlId="phone" bsSize="large">
-          <FormLabel>Phone</FormLabel>
+        <FormGroup controlId="username" bsSize="large">
+          <ControlLabel>Username</ControlLabel>
           <FormControl
             autoFocus
-            type="phone"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
+            type="text"
+            value={this.state.username}
+            onChange={this.handleChange}
           />
         </FormGroup>
-        
         <FormGroup controlId="password" bsSize="large">
-          <FormLabel>Password</FormLabel>
+          <ControlLabel>Password</ControlLabel>
           <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            value={this.state.password}
+            onChange={this.handleChange}
             type="password"
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit" variant="danger">
-          Sign Up
-        </Button>
+        <HelpBlock>Make sure password has at least 8 characters. Include upper case letters, numbers and special characters.</HelpBlock>
+        <FormGroup controlId="confirmPassword" bsSize="large">
+          <ControlLabel>Confirm Password</ControlLabel>
+          <FormControl
+            value={this.state.confirmPassword}
+            onChange={this.handleChange}
+            type="password"
+          />
+        </FormGroup>
+        <LoaderButton
+          block
+          bsSize="large"
+          disabled={!this.validateForm()}
+          type="submit"
+          isLoading={this.state.isLoading}
+          text="Sign Up"
+          loadingText="Signing up…"
+        />
       </form>
-    </div>
-  );
+    );
+  }
+
+  render() {
+    return (
+      <div className="Signup">
+        {this.state.newUser === null
+          ? this.renderForm()
+          : this.renderConfirmationForm()}
+      </div>
+    );
+  }
 }

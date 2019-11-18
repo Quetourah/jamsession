@@ -2,10 +2,10 @@
   margin-top: 15px;
 }
 
-.App .navbar-brand {
+.App .navbar-brand :link {
   font-weight: bold;
 }
 
-.nav{
+/*.nav{
   color: red;
-}
+}*/
