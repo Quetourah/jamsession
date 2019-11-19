@@ -10,7 +10,7 @@
     "monaco-editor-webpack-plugin": "^1.7.0",
     "react": "^16.11.0",
     "react-bootstrap": "^0.33.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
     "react-monaco-editor": "^0.32.1",
     "react-router-dom": "^5.1.2",
 
