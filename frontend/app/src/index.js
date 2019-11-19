@@ -31,7 +31,7 @@ Amplify.configure({
     ]
   }*/
 
-
+)};
 
 monaco.editor.create(document.getElementById('root'), {
   value: 'console.log("Hello, world")',
