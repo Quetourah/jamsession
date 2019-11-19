@@ -65,7 +65,7 @@ export default class Signup extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await Auth.confirmSignUp(this.state.email, this.state.username, this.state.confirmationCode);
+      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode, this.state.username);
       await Auth.signIn(this.state.username, this.state.email, this.state.password);
 
       this.props.userHasAuthenticated(true);
@@ -83,7 +83,7 @@ export default class Signup extends Component {
           <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
             autoFocus
-            type="tel"
+            type="text"
             value={this.state.confirmationCode}
             onChange={this.handleChange}
           />
