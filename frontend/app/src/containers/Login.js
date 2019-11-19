@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl,FormLabel } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css";
+import axios from 'axios';
 
 export default function Login(props) {
   const [email, setEmail] = useState("");
@@ -12,13 +13,13 @@ export default function Login(props) {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    //d
   }
 
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
+        <FormGroup controlId="email" >
           <FormLabel>Email</FormLabel>
           <FormControl
             autoFocus
@@ -27,7 +28,7 @@ export default function Login(props) {
             onChange={e => setEmail(e.target.value)}
           />
         </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
+        <FormGroup controlId="password" >
           <FormLabel>Password</FormLabel>
           <FormControl
             value={password}
@@ -35,7 +36,7 @@ export default function Login(props) {
             type="password"
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit" variant="danger">
+        <Button block  disabled={!validateForm()} type="submit" variant="danger">
           Log In
         </Button>
       </form>

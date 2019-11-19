@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
+//import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Nav} from 'react-bootstrap';
 
 import Routes from "./Routes";
-//import Profile from "./containers/Profile";
+import Profile from "./containers/Profile";
 import Coder from "./containers/Coder";
 import "./App.css";
 
@@ -21,7 +21,7 @@ class App extends Component
     };
   }
 
-  sendToServer = (cmd) => {
+  /**sendToServer = (cmd) => {
     axios.post(
       'http://localhost:5000/hello',
       { data: cmd },
@@ -31,7 +31,7 @@ class App extends Component
     }).catch((err)=> {
       console.log(err)
     })
-  }
+  }**/
 
   renderMainScreen() {
     
@@ -58,10 +58,17 @@ class App extends Component
    
       return (
         <div>
-        <Coder/>
+        <Profile/>
         </div>
       )
     
+  }
+  renderEditor(){
+    return (
+      <div>
+      <Coder/>
+      </div>
+    )
   }
   
 
@@ -88,13 +95,15 @@ class App extends Component
         {(this.renderMainScreen()) || (this.renderLandingMessage())}
       </div>**/
        <div className="profile-app container">
-      {this.renderProfileScreen()}
+      {this.renderEditor()}
 
       </div>
       
     );
     
   }
+
+
 }
 }
 
