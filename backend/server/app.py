@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
+from flask_jsonpify import jsonify
 
 app = Flask(__name__)
 CORS(app)
@@ -10,9 +11,10 @@ def index():
 
 @app.route("/hello", methods=['GET','POST'])
 def hello():
-    value = request.get_json().get("data", None)
-    print(value)
-    return {"msg": value}
+    if request.method == 'POST':
+        value = request.get_json().get('code')
+        print(value)
+        return jsonify({'code':value})
 
 if __name__ == "__main__":
     app.run()

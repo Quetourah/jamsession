@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify';
 import config from './config';
-
+import * as monaco from 'monaco-editor'
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
@@ -30,6 +30,13 @@ Amplify.configure({
       }
     ]
   }*/
+
+
+
+monaco.editor.create(document.getElementById('root'), {
+  value: 'console.log("Hello, world")',
+  language: 'python'
+
 });
 
 ReactDOM.render(

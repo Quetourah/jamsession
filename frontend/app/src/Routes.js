@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+
 import asyncComponent from "./components/AsyncComponent";
 import AppliedRoute from "./components/AppliedRoute";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
@@ -35,3 +36,4 @@ export default ({ childProps }) =>
     <Route component={AsyncNotFound} />
   </Switch>
 ;
+

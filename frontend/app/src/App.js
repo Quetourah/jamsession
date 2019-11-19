@@ -1,3 +1,4 @@
+
 import React, { Component, Fragment } from "react";
 import { Auth } from "aws-amplify";
 import { Link, withRouter } from "react-router-dom";
@@ -40,9 +41,12 @@ class App extends Component {
     this.userHasAuthenticated(false);
 
     this.props.history.push("/login");
+
   }
+  
 
   render() {
+
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
@@ -77,7 +81,11 @@ class App extends Component {
         <Routes childProps={childProps} />
       </div>
     );
+    
   }
+
+
+}
 }
 
 export default withRouter(App);
