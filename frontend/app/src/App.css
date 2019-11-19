@@ -5,11 +5,11 @@
 
 }
 
-.main-app .navbar-brand {
+
+.App .navbar-brand :link {
+
+
   font-weight: bold;
 }
 
-.nav{
-  color: red;
-}
 

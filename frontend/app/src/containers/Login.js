@@ -1,45 +1,79 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl,FormLabel } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import { Auth } from "aws-amplify";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
 import axios from 'axios';
 
-export default function Login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
+    this.state = {
+      isLoading: false,
+      username: "",
+      password: ""
+    };
   }
 
-  function handleSubmit(event) {
-    //d
+
+  validateForm() {
+    return this.state.username.length > 0 && this.state.password.length > 0;
   }
 
-  return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" >
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleSubmit = async event => {
+    event.preventDefault();
+
+    this.setState({ isLoading: true });
+
+    try {
+      await Auth.signIn(this.state.username, this.state.password);
+      this.props.userHasAuthenticated(true);
+    } catch (e) {
+      alert(e.message);
+      this.setState({ isLoading: false });
+    }
+  }
+
+  render() {
+    return (
+      <div className="Login">
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="username" bsSize="large">
+            <ControlLabel>Username</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.usrname}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <FormGroup controlId="password" bsSize="large">
+            <ControlLabel>Password</ControlLabel>
+            <FormControl
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+            />
+          </FormGroup>
+          <LoaderButton
+            block
+            bsSize="large"
+            disabled={!this.validateForm()}
+            type="submit"
+            isLoading={this.state.isLoading}
+            text="Login"
+            loadingText="Logging in…"
           />
-        </FormGroup>
-        <FormGroup controlId="password" >
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block  disabled={!validateForm()} type="submit" variant="danger">
-          Log In
-        </Button>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
+
 }
