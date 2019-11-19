@@ -1,4 +1,8 @@
+
 @media all and (min-width: 480px) {
+  .Login {
+    background-image: url("https://images.unsplash.com/photo-1510279410431-2d0808d69bf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80") no-repeat fixed center center;
+  }
     .Login {
       padding: 60px 0;
     }
@@ -6,6 +10,6 @@
     .Login form {
       margin: 0 auto;
       max-width: 320px;
-      color: red;
+      color: grey;
     }
   }
