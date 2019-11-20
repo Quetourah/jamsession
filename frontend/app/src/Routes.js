@@ -9,6 +9,8 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 const AsyncHome = asyncComponent(() => import("./containers/Home"));
 const AsyncLogin = asyncComponent(() => import("./containers/Login"));
 const AsyncSignup = asyncComponent(() => import("./containers/Signup"));
+const AsyncProfile = asyncComponent(() => import("./containers/Profile"));
+const AsyncCoder = asyncComponent(() => import("./containers/Coder"));
 const AsyncNotFound = asyncComponent(() => import("./containers/NotFound"));
 
 export default ({ childProps }) =>
@@ -23,6 +25,20 @@ export default ({ childProps }) =>
       path="/login"
       exact
       component={AsyncLogin}
+      props={childProps}
+    />
+    
+     <AuthenticatedRoute
+      path="/profile"
+      exact
+      component={AsyncProfile}
+      props={childProps}
+    />
+
+    <AuthenticatedRoute
+      path="/coder"
+      exact
+      component={AsyncCoder}
       props={childProps}
     />
     <UnauthenticatedRoute
