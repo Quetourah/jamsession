@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import MonacoEditor from 'react-monaco-editor';
-import { Button,Grid, Row, Col } from 'react-bootstrap';
+import { Button,Grid, Row, Col,Alert} from 'react-bootstrap';
+import './Coder.css'
 
 export default class Coder extends Component {
     
@@ -46,9 +47,9 @@ export default class Coder extends Component {
         <div className='Coder'>
     <Grid>
     <Row>
-    <Col xs={8} md={10}>
+    <Col xs={10} md={8}>
       <MonacoEditor
-        width="800"
+        width="750"
         height="600"
         language="python"
         theme="vs-dark"
@@ -59,11 +60,34 @@ export default class Coder extends Component {
       />
       </Col>
     
-    <Col xs={4} md={2}>
+    <Col xs={6} md={4}>
     <div>
       <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Play</Button>
       <Button onClick={this.handleCollab} bsSize="large" block bsStyle="danger">Add Jammer</Button>
-      </div>
+    </div>
+    
+    <div >
+      <Alert >Jammer's:
+        <div>
+      <ol>
+        <li>
+        Test User
+      </li>
+      </ol>
+
+
+      </div >
+    </Alert>
+    </div>
+    
+    <div >
+    <Alert className="BuildAlert" >Build Logs:
+    <div>
+
+    </div>
+    </Alert>
+    </div>
+    
     </Col>
     </Row>
     </Grid>

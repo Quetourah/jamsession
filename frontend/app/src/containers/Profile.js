@@ -73,7 +73,7 @@ const Me = (props) => (
 )
 
 const JammerInfo = (props) => (
-    <div >
+    <div className="JammerInfo" >
                     
                         <ListGroup>
                             <ListGroupItem><h2>Jammer Name :</h2><br/>{props.username}</ListGroupItem>
@@ -82,9 +82,9 @@ const JammerInfo = (props) => (
     </div>
 )
 const JammerHistory = (props) => (
-    <div>
+    <div className="JammerHistory">
         <h2>Jammer History</h2>
-        <Table striped bordered responsive>
+        <Table striped bordered responsive >
             <thead>
                 <tr>
                     <td>#</td>
@@ -99,7 +99,7 @@ const JammerHistory = (props) => (
                     <td>1</td>
                     <td>Rock It</td>
                     <td>Public</td>
-                    <td>0</td>
+                    <td>1</td>
                     
                 </tr>
             </tbody>
