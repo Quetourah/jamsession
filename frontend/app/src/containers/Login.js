@@ -3,7 +3,7 @@ import { Auth } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
-import axios from 'axios';
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -35,6 +35,7 @@ export default class Login extends Component {
     try {
       await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
+      
     } catch (e) {
       alert(e.message);
       this.setState({ isLoading: false });

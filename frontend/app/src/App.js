@@ -39,7 +39,8 @@ class App extends Component {
     await Auth.signOut();
 
     this.userHasAuthenticated(false);
-
+    
+    
     this.props.history.push("/login");
 
   }
@@ -55,7 +56,7 @@ class App extends Component {
     return (
       !this.state.isAuthenticating &&
       <div className="App container">
-        <Navbar fluid collapseOnSelect>
+        <Navbar fluid collapseOnSelect className="Nav">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">Jam Session</Link>
@@ -65,7 +66,11 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                ? <Nav pullRight> 
+                    
+                    <NavItem href="https://foxdot.org/docs/" target="_blank">Documentation</NavItem>
+                    <NavItem onClick={this.handleLogout}>Logout</NavItem> 
+                 </Nav>
                 : <Fragment>
                     <LinkContainer to="/signup">
                       <NavItem>Signup</NavItem>
