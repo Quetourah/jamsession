@@ -23,11 +23,18 @@ export default class Profile extends Component {
       
     }
     componentDidMount() {
-        const user = Auth.currentUserInfo()
+        const user = Auth.currentUserInfo();
+        
+        
         user.then(function(result) {
-            console.log(result) // "Some User token"
+            this.setState({username:result.username})
+            this.setState({email:result.attributes.email})
+            
+            
 
-      })
+      }.bind(this));
+      
+     
     }
     render(){
 
@@ -47,7 +54,7 @@ const Me = (props) => (
     <div className="container">
             <Row>
             <Col s={6} md={4}>
-            <Image src='https://image-ticketfly.imgix.net/00/00/32/50/75-og.jpg?w=500&h=334&fit=crop&crop=top' thumbnail fluid />
+            <Image src='https://image-ticketfly.imgix.net/00/00/32/50/75-og.jpg?w=500&h=334&fit=crop&crop=top' thumbnail />
 
                 
             </Col>
@@ -91,13 +98,14 @@ const JammerHistory = (props) => (
                     <td>Song Name</td>
                     <td>Privacy</td>
                     <td>Jammers</td>
+
                     
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Rock It</td>
+                    <td><a href="/coder">Rock It</a></td>
                     <td>Public</td>
                     <td>1</td>
                     

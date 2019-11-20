@@ -15,7 +15,15 @@ Amplify.configure({
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID
   },
- 
+  API: {
+    endpoints: [
+      {
+        name: "profile",
+        endpoint: config.graphql.URL,
+        region: config.graphql.REGION
+      }
+    ]
+  }
   /*,
   Storage: {
     region: config.s3.REGION,
