@@ -12,7 +12,7 @@ RUN apt-get update && \
     apt-get install -y icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb && \
     apt-get clean
 
-RUN apt-get install -y git cmake curl python-pip
+RUN apt-get install -y git cmake curl python-pip netcat-openbsd
 
 RUN pip install FoxDot
 
@@ -31,6 +31,7 @@ COPY darkice.cfg /etc/darkice.cfg
 
 COPY startup.scd /root/.config/SuperCollider/startup.scd
 COPY radio.sc /radio.sc
+COPY tmp_Foxdot /tmp_Foxdot
 
 COPY Procfile Procfile
 COPY foxsamply.sh /foxsamply.sh

@@ -8,4 +8,4 @@ ServerQuit.add({
 	1.exit();
 }, Server.default);
 
-FoxDot.start;
+

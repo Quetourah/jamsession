@@ -21,6 +21,6 @@ SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
         PingPong.ar(bufnum, [left,right], delayTime, feedback, 1)
     )
 }).play(s,[\out, 0, \bufnum, b.bufnum,\feedback,0.5,\delayTime,0.1]);
-FoxDot.start;
+// FoxDot.start;
 });
 
