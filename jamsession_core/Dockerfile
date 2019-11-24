@@ -23,6 +23,9 @@ RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-
 	chmod +x /usr/bin/forego
 
 COPY asoundrc /root/.asoundrc
+COPY server.py /server.py
+COPY requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 
 COPY icecast.xml /etc/icecast2/icecast.xml
 COPY darkice.cfg /etc/darkice.cfg
