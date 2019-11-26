@@ -1,9 +1,9 @@
 
-import React,{Component} from "react";
+import React,{Component,useState} from "react";
 import "./Profile.css";
 import {Auth} from 'aws-amplify'
 import 
-    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button
+    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
 } from 'react-bootstrap'
 
 
@@ -15,8 +15,12 @@ export default class Profile extends Component {
       super(props);
       this.state =
       {
-       username:'Test User',
-       email:'test@test.com'
+       username:'',
+       email:'',
+       show:false,
+       song_name:'',
+       song_type:'public',
+       song_collaborators:'',
   
        }
   
@@ -33,25 +37,20 @@ export default class Profile extends Component {
             
 
       }.bind(this));
-      
+    
      
     }
+    handleClose = () => this.setState({show:false});
+    handleShow = () => this.setState({show:true});
+
+    handleCreateSong(){
+       
+    }
+   
     render(){
-
+        
      return(
-        <div className='container'>
-            <Me 
-                username={this.state.username}
-                email={this.state.email}
-            />
-        </div>
-    )
-     }
-
-
-}
-const Me = (props) => (
-    <div className="container">
+        <div className="container">
             <Row>
             <Col s={6} md={4}>
             <Image src='https://image-ticketfly.imgix.net/00/00/32/50/75-og.jpg?w=500&h=334&fit=crop&crop=top' thumbnail />
@@ -62,13 +61,58 @@ const Me = (props) => (
                     
                 <Col s={6} md={4}>
                 <JammerInfo 
-                    username={props.username}
-                    email={props.email}
+                    username={this.state.username}
+                    email={this.state.email}
                 />
                 
                 </Col>
                 <Col s={6} md={4}>
-                <Button href="/coder" bsSize="large" block bsStyle="danger">Let's Go</Button>
+                <div>
+                            <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
+                            Lets Go Live
+                            </Button>
+                    
+                            <Modal show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Lets Create a new Song</Modal.Title>
+                            </Modal.Header>
+                            <form className="container">
+                                    
+                                    <h3>Song Name</h3>
+                                    <InputGroup >
+                                    <FormControl
+                                        componentClass="input"
+                                        placeholder="Please Enter the Song Name"
+                                        inputRef={(ref) => {this.input = ref}}
+                                        />
+                                    
+                                    </InputGroup >
+                                    <InputGroup >
+                                    <h3>Private/ Public</h3>
+                                    <FormControl
+                                        placeholder="Enter Private or Public"
+                                        />
+                                    
+                                    </InputGroup >
+                                    <InputGroup >
+                                    <h3>Add Collaborators</h3>
+                                    <FormControl
+                                        placeholder="Add Collaborators separating by comma"
+                                        />
+                                    
+                                    </InputGroup >
+                                    
+                            </form>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={this.handleClose}>
+                                Close
+                                </Button>
+                                <Button variant="primary" onClick={this.handleCreateSong}>
+                                Create a New Song
+                                </Button>
+                            </Modal.Footer>
+                            </Modal>
+                </div>
                 
                 </Col>
                 
@@ -77,7 +121,11 @@ const Me = (props) => (
             <JammerHistory/>
             </Row>
     </div>
-)
+    )
+     }
+
+
+}
 
 const JammerInfo = (props) => (
     <div className="JammerInfo" >
@@ -113,3 +161,4 @@ const JammerHistory = (props) => (
             </tbody>
         </Table>
     </div>)
+

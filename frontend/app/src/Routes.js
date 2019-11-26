@@ -15,7 +15,7 @@ const AsyncNotFound = asyncComponent(() => import("./containers/NotFound"));
 
 export default ({ childProps }) =>
   <Switch>
-    <AppliedRoute
+    <UnauthenticatedRoute
       path="/"
       exact
       component={AsyncHome}
@@ -29,14 +29,14 @@ export default ({ childProps }) =>
     />
     
      <AuthenticatedRoute
-      path="/profile"
+      path="/profile/:username"
       exact
       component={AsyncProfile}
       props={childProps}
     />
 
     <AuthenticatedRoute
-      path="/coder"
+      path="/coder/:songname"
       exact
       component={AsyncCoder}
       props={childProps}
