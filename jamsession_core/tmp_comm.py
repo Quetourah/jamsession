@@ -1,2 +1,2 @@
 import FoxDot
-print("HI")
+print("Hi")
