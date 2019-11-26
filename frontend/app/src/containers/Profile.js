@@ -21,6 +21,7 @@ export default class Profile extends Component {
        song_name:'',
        song_type:'public',
        song_collaborators:'',
+       song_exists:false,
   
        }
        this.handleName=this.handleName.bind(this);
@@ -61,11 +62,17 @@ export default class Profile extends Component {
     }
     handleCreateSong(event){
         
-        
-        console.log(this.state.song_name);
-        console.log(this.state.song_type);
-        console.log(this.state.song_collaborators);
-        
+        // TODO: Write these info to the DB
+        //console.log(this.state.song_name);
+        //console.log(this.state.song_type);
+        //console.log(this.state.song_collaborators);
+        if(!this.state.song_exists)
+        {
+            this.props.history.push(`/coder/${this.state.song_name}`);
+        }
+        else{
+            //throw error saying this song already exists and open the new song
+        }
     
     }
    
