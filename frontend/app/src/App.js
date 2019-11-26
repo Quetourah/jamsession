@@ -69,7 +69,6 @@ class App extends Component {
                 ? <Nav pullRight> 
                     
                     <NavItem href="https://foxdot.org/docs/" target="_blank">Documentation</NavItem>
-                    <NavItem href="/profile">Profile</NavItem> 
                     <NavItem onClick={this.handleLogout}>Logout</NavItem> 
                  </Nav>
                 : <Fragment>

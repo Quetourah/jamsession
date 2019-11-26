@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import MonacoEditor from 'react-monaco-editor';
 import { Button,Grid, Row, Col,Alert} from 'react-bootstrap';
 import './Coder.css'
@@ -33,6 +34,7 @@ export default class Coder extends Component {
     }).catch((err)=> {
       console.log(err)
     })
+    
   }
   handleCollab(){
     //TODO need to do a graph QL call to the DB to pull all the users and list
@@ -71,7 +73,7 @@ export default class Coder extends Component {
         <div>
       <ol>
         <li>
-        Test User
+        baivab.pokhrel
       </li>
       </ol>
 
