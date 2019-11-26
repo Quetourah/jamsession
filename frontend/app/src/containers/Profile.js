@@ -1,5 +1,5 @@
 
-import React,{Component,useState} from "react";
+import React,{Component} from "react";
 import "./Profile.css";
 import {Auth} from 'aws-amplify'
 import 
@@ -23,10 +23,15 @@ export default class Profile extends Component {
        song_collaborators:'',
   
        }
+       this.handleName=this.handleName.bind(this);
+       this.handleType=this.handleType.bind(this);
+       this.handleCollab=this.handleCollab.bind(this);
+       this.handleCreateSong=this.handleCreateSong.bind(this);
   
       
     }
-    componentDidMount() {
+    componentDidMount() 
+    {
         const user = Auth.currentUserInfo();
         
         
@@ -42,9 +47,26 @@ export default class Profile extends Component {
     }
     handleClose = () => this.setState({show:false});
     handleShow = () => this.setState({show:true});
+    
+    handleName(event){
+        this.setState({song_name: event.target.value});
+    }
 
-    handleCreateSong(){
-       
+    handleType(event){
+        this.setState({song_type: event.target.value});
+    }
+
+    handleCollab(event){
+        this.setState({song_collaborators: event.target.value});
+    }
+    handleCreateSong(event){
+        
+        
+        console.log(this.state.song_name);
+        console.log(this.state.song_type);
+        console.log(this.state.song_collaborators);
+        
+    
     }
    
     render(){
@@ -81,9 +103,10 @@ export default class Profile extends Component {
                                     <h3>Song Name</h3>
                                     <InputGroup >
                                     <FormControl
-                                        componentClass="input"
+                                        
                                         placeholder="Please Enter the Song Name"
-                                        inputRef={(ref) => {this.input = ref}}
+                                        value={this.state.song_name}
+                                        onChange={this.handleName}
                                         />
                                     
                                     </InputGroup >
@@ -91,6 +114,9 @@ export default class Profile extends Component {
                                     <h3>Private/ Public</h3>
                                     <FormControl
                                         placeholder="Enter Private or Public"
+                                        value={this.state.song_type}
+                                        onChange={this.handleType}
+                                        
                                         />
                                     
                                     </InputGroup >
@@ -98,6 +124,8 @@ export default class Profile extends Component {
                                     <h3>Add Collaborators</h3>
                                     <FormControl
                                         placeholder="Add Collaborators separating by comma"
+                                        value={this.state.song_collaborators}
+                                        onChange={this.handleCollab}
                                         />
                                     
                                     </InputGroup >
