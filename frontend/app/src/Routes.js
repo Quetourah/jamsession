@@ -29,14 +29,14 @@ export default ({ childProps }) =>
     />
     
      <AuthenticatedRoute
-      path="/profile/:username"
+      path="/profile"
       exact
       component={AsyncProfile}
       props={childProps}
     />
 
     <AuthenticatedRoute
-      path="/coder/:songname"
+      path="/coder"
       exact
       component={AsyncCoder}
       props={childProps}

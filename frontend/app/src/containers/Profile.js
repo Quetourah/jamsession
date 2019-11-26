@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import "./Profile.css";
 import {Auth} from 'aws-amplify'
 import 
-    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
+    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button
 } from 'react-bootstrap'
 
 
@@ -15,24 +15,14 @@ export default class Profile extends Component {
       super(props);
       this.state =
       {
-       username:'',
-       email:'',
-       show:false,
-       song_name:'',
-       song_type:'public',
-       song_collaborators:'',
-       song_exists:false,
+       username:'Test User',
+       email:'test@test.com'
   
        }
-       this.handleName=this.handleName.bind(this);
-       this.handleType=this.handleType.bind(this);
-       this.handleCollab=this.handleCollab.bind(this);
-       this.handleCreateSong=this.handleCreateSong.bind(this);
   
       
     }
-    componentDidMount() 
-    {
+    componentDidMount() {
         const user = Auth.currentUserInfo();
         
         
@@ -43,43 +33,25 @@ export default class Profile extends Component {
             
 
       }.bind(this));
-    
+      
      
     }
-    handleClose = () => this.setState({show:false});
-    handleShow = () => this.setState({show:true});
-    
-    handleName(event){
-        this.setState({song_name: event.target.value});
-    }
-
-    handleType(event){
-        this.setState({song_type: event.target.value});
-    }
-
-    handleCollab(event){
-        this.setState({song_collaborators: event.target.value});
-    }
-    handleCreateSong(event){
-        
-        // TODO: Write these info to the DB
-        //console.log(this.state.song_name);
-        //console.log(this.state.song_type);
-        //console.log(this.state.song_collaborators);
-        if(!this.state.song_exists)
-        {
-            this.props.history.push(`/coder/${this.state.song_name}`);
-        }
-        else{
-            //throw error saying this song already exists and open the new song
-        }
-    
-    }
-   
     render(){
-        
+
      return(
-        <div className="container">
+        <div className='container'>
+            <Me 
+                username={this.state.username}
+                email={this.state.email}
+            />
+        </div>
+    )
+     }
+
+
+}
+const Me = (props) => (
+    <div className="container">
             <Row>
             <Col s={6} md={4}>
             <Image src='https://image-ticketfly.imgix.net/00/00/32/50/75-og.jpg?w=500&h=334&fit=crop&crop=top' thumbnail />
@@ -90,64 +62,13 @@ export default class Profile extends Component {
                     
                 <Col s={6} md={4}>
                 <JammerInfo 
-                    username={this.state.username}
-                    email={this.state.email}
+                    username={props.username}
+                    email={props.email}
                 />
                 
                 </Col>
                 <Col s={6} md={4}>
-                <div>
-                            <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
-                            Lets Go Live
-                            </Button>
-                    
-                            <Modal show={this.state.show} onHide={this.handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Lets Create a new Song</Modal.Title>
-                            </Modal.Header>
-                            <form className="container">
-                                    
-                                    <h3>Song Name</h3>
-                                    <InputGroup >
-                                    <FormControl
-                                        
-                                        placeholder="Please Enter the Song Name"
-                                        value={this.state.song_name}
-                                        onChange={this.handleName}
-                                        />
-                                    
-                                    </InputGroup >
-                                    <InputGroup >
-                                    <h3>Private/ Public</h3>
-                                    <FormControl
-                                        placeholder="Enter Private or Public"
-                                        value={this.state.song_type}
-                                        onChange={this.handleType}
-                                        
-                                        />
-                                    
-                                    </InputGroup >
-                                    <InputGroup >
-                                    <h3>Add Collaborators</h3>
-                                    <FormControl
-                                        placeholder="Add Collaborators separating by comma"
-                                        value={this.state.song_collaborators}
-                                        onChange={this.handleCollab}
-                                        />
-                                    
-                                    </InputGroup >
-                                    
-                            </form>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={this.handleClose}>
-                                Close
-                                </Button>
-                                <Button variant="primary" onClick={this.handleCreateSong}>
-                                Create a New Song
-                                </Button>
-                            </Modal.Footer>
-                            </Modal>
-                </div>
+                <Button href="/coder" bsSize="large" block bsStyle="danger">Let's Go</Button>
                 
                 </Col>
                 
@@ -156,11 +77,7 @@ export default class Profile extends Component {
             <JammerHistory/>
             </Row>
     </div>
-    )
-     }
-
-
-}
+)
 
 const JammerInfo = (props) => (
     <div className="JammerInfo" >
@@ -196,4 +113,3 @@ const JammerHistory = (props) => (
             </tbody>
         </Table>
     </div>)
-
