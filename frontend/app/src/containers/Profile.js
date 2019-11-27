@@ -4,6 +4,7 @@ import "./Profile.css";
 import {Auth,API, graphqlOperation} from 'aws-amplify'
 import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap'
 import {listSongs} from "../graphql/Queries";
+import {createSong} from "../graphql/Mutations";
 
 //TODO: Need to pull this data from DB
 const userhistoryinfo=
@@ -227,7 +228,7 @@ render()
     }
 }**/
 class JammerHistory extends Component {
-    state = { songs: [] }
+    state = { title: '', songs: [] }
     async componentDidMount() {
         try {
             const apiData = await API.graphql(graphqlOperation(listSongs))
