@@ -89,6 +89,7 @@ export default class Profile extends Component {
                 />
                 
                 </Col>
+
             </Row>
             <Row>
             <JammerHistory/>
