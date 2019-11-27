@@ -44,6 +44,21 @@ class App extends Component {
     this.props.history.push("/login");
 
   }
+  handleProfile(){
+    if(this.state.isAuthenticated)
+    {
+      const user = Auth.currentUserInfo();
+    console.log(user);
+        
+        
+        user.then(function(result) {
+          this.props.history.push(`/profile/${result.username}`);
+          
+
+        }.bind(this));
+  
+        }
+}
   
 
   render() {
@@ -69,6 +84,7 @@ class App extends Component {
                 ? <Nav pullRight> 
                     
                     <NavItem href="https://foxdot.org/docs/" target="_blank">Documentation</NavItem>
+                    <NavItem onClick={this.handleProfile.bind(this)}>Profile</NavItem> 
                     <NavItem onClick={this.handleLogout}>Logout</NavItem> 
                  </Nav>
                 : <Fragment>

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`renders loader button correctly 1`] = `
-<button
-  className="LoaderButton  btn btn-default"
-  disabled={false}
-  type="button"
-/>
-`;
