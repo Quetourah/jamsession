@@ -7,6 +7,7 @@ import {listSongs} from "../graphql/Queries";
 import {createSongs} from "../graphql/Mutations";
 
 //TODO: Need to pull this data from DB
+
 export default class Profile extends Component {
     
     constructor(props) {
@@ -88,62 +89,6 @@ export default class Profile extends Component {
                 />
                 
                 </Col>
-                <Col s={6} md={4}>
-                <div>
-                            <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
-                            Create Song
-                            </Button>
-                    
-                            <Modal show={this.state.show} onHide={this.handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Lets Create a new Song</Modal.Title>
-                            </Modal.Header>
-                            <form className="container">
-                                    
-                                    <h3>Song Name</h3>
-                                    <InputGroup >
-                                    <FormControl
-                                        
-                                        placeholder="Please Enter the Song Name"
-                                        value={this.state.song_name}
-                                        onChange={this.handleName}
-                                        />
-                                    
-                                    </InputGroup >
-                                    <InputGroup >
-                                    <h3>Private/ Public</h3>
-                                    <FormControl
-                                        placeholder="Enter Private or Public"
-                                        value={this.state.song_type}
-                                        onChange={this.handleType}
-                                        
-                                        />
-                                    
-                                    </InputGroup >
-                                    <InputGroup >
-                                    <h3>Add Collaborators</h3>
-                                    <FormControl
-                                        placeholder="Add Collaborators separating by comma"
-                                        value={this.state.song_collaborators}
-                                        onChange={this.handleCollab}
-                                        />
-                                    
-                                    </InputGroup >
-                                    
-                            </form>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={this.handleClose}>
-                                Close
-                                </Button>
-                                <Button variant="primary" onClick={this.handleCreateSong}>
-                                Create a New Song
-                                </Button>
-                            </Modal.Footer>
-                            </Modal>
-                </div>
-                
-                </Col>
-                
             </Row>
             <Row>
             <JammerHistory/>
@@ -192,10 +137,73 @@ class JammerHistory extends Component {
             console.log('error: ', err)
         }
     }
+    handleClose = () => this.setState({ show: false });
+    handleShow = () => this.setState({ show: true });
     render() {
         
         return (
+            
             <div className="JammerHistory">
+               
+                    <div>
+                    <Row>    
+                    <Col s={6} md={4}>
+                        <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
+                            Create Song
+                            </Button>
+
+                        <Modal show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Let's Create a new Song</Modal.Title>
+                            </Modal.Header>
+                            <form className="container">
+
+                                <h3>Song Name</h3>
+                                <InputGroup >
+                                    <FormControl
+
+                                        placeholder="Please Enter the Song Name"
+                                        value={this.state.song_name}
+                                        onChange={this.handleName}
+                                    />
+
+                                </InputGroup >
+                                <InputGroup >
+                                    <h3>Private/ Public</h3>
+                                    <FormControl
+                                        placeholder="Enter Private or Public"
+                                        value={this.state.song_type}
+                                        onChange={this.handleType}
+
+                                    />
+
+                                </InputGroup >
+                                <InputGroup >
+                                    <h3>Add Collaborators</h3>
+                                    <FormControl
+                                        placeholder="Add Collaborators separating by comma"
+                                        value={this.state.song_collaborators}
+                                        onChange={this.handleCollab}
+                                    />
+
+                                </InputGroup >
+
+                            </form>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={this.handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="primary" onClick={this.handleCreateSong}>
+                                    Create a New Song
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </Col>  
+                    </Row>
+                    </div>
+
+                
+                <div>
                 <h2>Jammer History</h2>
                 <Table striped bordered responsive  >
                     <thead>
@@ -222,6 +230,7 @@ class JammerHistory extends Component {
                     }
 
                 </Table>
+            </div>
             </div>)        
         
     }
