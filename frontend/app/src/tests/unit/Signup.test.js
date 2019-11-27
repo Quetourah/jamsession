@@ -3,7 +3,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
-import Signup from '../../containers/Login';
+import Signup from '../../containers/Signup';
 
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -13,7 +13,7 @@ let wrapper;
 
 it('check new user value ',()=>{
 wrapper = shallow(<Signup/>);
-expect(wrapper.state('newUser')).toBe(undefined);
+expect(wrapper.state('newUser')).toBe(null);
 })
 
 it('initial username value',()=>{
