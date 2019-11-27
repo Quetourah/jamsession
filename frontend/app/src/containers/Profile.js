@@ -161,10 +161,10 @@ class JammerHistory extends Component {
                                 <h3>Song Name</h3>
                                 <InputGroup >
                                     <FormControl
-
+                                        name='title'
                                         placeholder="Please Enter the Song Name"
-                                        value={this.state.song_name}
-                                        onChange={this.handleName}
+                                        value={this.state.title}
+                                        onChange={this.onChange}
                                     />
 
                                 </InputGroup >
@@ -193,7 +193,7 @@ class JammerHistory extends Component {
                                 <Button variant="secondary" onClick={this.handleClose}>
                                     Close
                                 </Button>
-                                <Button variant="primary" onClick={this.handleCreateSong}>
+                                <Button variant="primary" onClick={this.createSongs}>
                                     Create a New Song
                                 </Button>
                             </Modal.Footer>
