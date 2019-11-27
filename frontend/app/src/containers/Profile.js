@@ -181,52 +181,6 @@ const JammerInfo = (props) => (
     </div>
 )
 
-
-/**class JammerHistory extends Component{
-
-
-render()
-{
-    const songinfo = userhistoryinfo.map((userhistoryinfo) => 
-    {
-        
-        return (
-            
-            <tbody key={userhistoryinfo.song_name}>
-                    <tr>
-                    
-                    <td ><a href={"/coder/"+userhistoryinfo.song_name} >{userhistoryinfo.song_name}</a></td>
-                    <td>{userhistoryinfo.song_type}</td>
-                    <td >{userhistoryinfo.song_collab}</td>
-                    </tr>
-            </tbody>
-                );
-        });
-
-    return (
-    <div className="JammerHistory">
-        <h2>Jammer History</h2>
-        <Table striped bordered responsive  >
-            <thead>
-                <tr>
-                    
-                    <td>Song Name</td>
-                    <td>Privacy</td>
-                    <td>Jammers</td>
-
-                    
-                </tr>
-            </thead>
-            
-                
-                    {songinfo}
-                    
-                
-            
-        </Table>
-    </div>)
-    }
-}**/
 class JammerHistory extends Component {
     state = { title: '', songs: [] }
     async componentDidMount() {
@@ -257,25 +211,35 @@ class JammerHistory extends Component {
     render() {
         
         return (
-            //className="JammerHistory">
-            <div>
-                {
-                    this.state.songs.map((rest, i) => (
-                        <div style={styles.item} key={i}>
-                            <p style={styles.title}>{rest.title}</p>
-                        </div>
-                    ))
-                }
-          
-                </div>)
+            <div className="JammerHistory">
+                <h2>Jammer History</h2>
+                <Table striped bordered responsive  >
+                    <thead>
+                        <tr>
+
+                            <td>Song Name</td>
+                            <td>Privacy</td>
+                            <td>Jammers</td>
+
+
+                        </tr>
+                    </thead>
+                   
+                    {
+                        this.state.songs.map((rest, i) => (
+                            <tbody key={i}>
+                                <tr>
+                                    <td><a href={""}>{rest.title}</a></td>
+                                    <td>Privacy</td>
+                                    <td>Jammers</td>
+                                </tr>
+                            </tbody>
+                        ))
+                    }
+
+                </Table>
+            </div>)        
         
     }
 }
-const styles = {
-    item: {
-        padding: 10,
-        borderBottom: '2px solid #ddd'
-    },
-    title: { fontSize: 22 },
-    //description: { color: 'rgba(0, 0, 0, .45)' }
-}
+
