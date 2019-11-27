@@ -44,6 +44,7 @@ class App extends Component {
     this.props.history.push("/login");
 
   }
+<<<<<<< HEAD
   handleProfile(){
     if(this.state.isAuthenticated)
     {
@@ -59,6 +60,8 @@ class App extends Component {
   
         }
 }
+=======
+>>>>>>> changes
   
 
   render() {
@@ -84,7 +87,11 @@ class App extends Component {
                 ? <Nav pullRight> 
                     
                     <NavItem href="https://foxdot.org/docs/" target="_blank">Documentation</NavItem>
+<<<<<<< HEAD
                     <NavItem onClick={this.handleProfile.bind(this)}>Profile</NavItem> 
+=======
+                    <NavItem href="/profile">Profile</NavItem> 
+>>>>>>> changes
                     <NavItem onClick={this.handleLogout}>Logout</NavItem> 
                  </Nav>
                 : <Fragment>

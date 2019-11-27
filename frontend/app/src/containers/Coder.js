@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 
+=======
+>>>>>>> changes
 import MonacoEditor from 'react-monaco-editor';
 import { Button,Grid, Row, Col,Alert} from 'react-bootstrap';
 import './Coder.css'
 
+<<<<<<< HEAD
 
 
 export default class Coder extends Component {
   
   
+=======
+export default class Coder extends Component {
+>>>>>>> changes
     
   constructor(props) {
     
     super(props);
     this.state =
     {
+<<<<<<< HEAD
       songname:'',
       code: '# type your code...',
       jammerlist:[],
+=======
+      code: '# type your code...',
+>>>>>>> changes
 
      };
 
     
   }
+<<<<<<< HEAD
   editorDidMount(editor, monaco) {
     console.log('editorDidMount', editor);
     
   }
+=======
+>>>>>>> changes
   
   onChange(newValue, e) 
   {
@@ -44,6 +58,7 @@ export default class Coder extends Component {
     }).catch((err)=> {
       console.log(err)
     })
+<<<<<<< HEAD
     
   }
   handleCollab(){
@@ -63,11 +78,19 @@ export default class Coder extends Component {
        
    
   }
+=======
+  }
+  handleCollab(){
+    //TODO need to do a graph QL call to the DB to pull all the users and list
+    //them
+  }
+>>>>>>> changes
   render() {
     const code = this.state.code;
     const options = {
       selectOnLineNumbers: true
     };
+<<<<<<< HEAD
 
     const jammers = this.state.jammerlist.map((jammerlist) => 
     {
@@ -86,6 +109,8 @@ export default class Coder extends Component {
                 );
         });
 
+=======
+>>>>>>> changes
     return (
         <div className='Coder'>
     <Grid>
@@ -99,7 +124,10 @@ export default class Coder extends Component {
         value={code}
         options={options}
         onChange={this.onChange.bind(this)}
+<<<<<<< HEAD
         editorDidMount={this.editorDidMount.bind(this)}
+=======
+>>>>>>> changes
         
       />
       </Col>
@@ -107,14 +135,30 @@ export default class Coder extends Component {
     <Col xs={6} md={4}>
     <div>
       <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Play</Button>
+<<<<<<< HEAD
       <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
       <Button onClick={this.handleCollab} bsSize="large" block bsStyle="danger">Add Jammer</Button>
       
+=======
+      <Button onClick={this.handleCollab} bsSize="large" block bsStyle="danger">Add Jammer</Button>
+>>>>>>> changes
     </div>
     
     <div >
       <Alert >Jammer's:
+<<<<<<< HEAD
        {jammers}
+=======
+        <div>
+      <ol>
+        <li>
+        Test User
+      </li>
+      </ol>
+
+
+      </div >
+>>>>>>> changes
     </Alert>
     </div>
     

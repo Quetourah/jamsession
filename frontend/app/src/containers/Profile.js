@@ -3,6 +3,7 @@ import React,{Component} from "react";
 import "./Profile.css";
 import {Auth} from 'aws-amplify'
 import 
+<<<<<<< HEAD
     { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
 } from 'react-bootstrap'
 
@@ -23,6 +24,12 @@ const userhistoryinfo=
     song_collab:"2"
 },
 ]
+=======
+    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button
+} from 'react-bootstrap'
+
+
+>>>>>>> changes
 
 export default class Profile extends Component {
     
@@ -31,6 +38,7 @@ export default class Profile extends Component {
       super(props);
       this.state =
       {
+<<<<<<< HEAD
        username:'',
        email:'',
        show:false,
@@ -49,6 +57,16 @@ export default class Profile extends Component {
     }
     componentDidMount() 
     {
+=======
+       username:'Test User',
+       email:'test@test.com'
+  
+       }
+  
+      
+    }
+    componentDidMount() {
+>>>>>>> changes
         const user = Auth.currentUserInfo();
         
         
@@ -59,6 +77,7 @@ export default class Profile extends Component {
             
 
       }.bind(this));
+<<<<<<< HEAD
        
     }
     
@@ -96,6 +115,27 @@ export default class Profile extends Component {
         
      return(
         <div className="container">
+=======
+      
+     
+    }
+    render(){
+
+     return(
+        <div className='container'>
+            <Me 
+                username={this.state.username}
+                email={this.state.email}
+            />
+        </div>
+    )
+     }
+
+
+}
+const Me = (props) => (
+    <div className="container">
+>>>>>>> changes
             <Row>
             <Col s={6} md={4}>
             <Image src='https://image-ticketfly.imgix.net/00/00/32/50/75-og.jpg?w=500&h=334&fit=crop&crop=top' thumbnail />
@@ -106,12 +146,18 @@ export default class Profile extends Component {
                     
                 <Col s={6} md={4}>
                 <JammerInfo 
+<<<<<<< HEAD
                     username={this.state.username}
                     email={this.state.email}
+=======
+                    username={props.username}
+                    email={props.email}
+>>>>>>> changes
                 />
                 
                 </Col>
                 <Col s={6} md={4}>
+<<<<<<< HEAD
                 <div>
                             <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
                             Create Song
@@ -164,6 +210,9 @@ export default class Profile extends Component {
                             </Modal.Footer>
                             </Modal>
                 </div>
+=======
+                <Button href="/coder" bsSize="large" block bsStyle="danger">Let's Go</Button>
+>>>>>>> changes
                 
                 </Col>
                 
@@ -172,11 +221,15 @@ export default class Profile extends Component {
             <JammerHistory/>
             </Row>
     </div>
+<<<<<<< HEAD
     )
      }
 
 
 }
+=======
+)
+>>>>>>> changes
 
 const JammerInfo = (props) => (
     <div className="JammerInfo" >
@@ -187,6 +240,7 @@ const JammerInfo = (props) => (
                         </ListGroup>    
     </div>
 )
+<<<<<<< HEAD
 
 
 class JammerHistory extends Component{
@@ -217,6 +271,15 @@ render()
             <thead>
                 <tr>
                     
+=======
+const JammerHistory = (props) => (
+    <div className="JammerHistory">
+        <h2>Jammer History</h2>
+        <Table striped bordered responsive >
+            <thead>
+                <tr>
+                    <td>#</td>
+>>>>>>> changes
                     <td>Song Name</td>
                     <td>Privacy</td>
                     <td>Jammers</td>
@@ -224,6 +287,7 @@ render()
                     
                 </tr>
             </thead>
+<<<<<<< HEAD
             
                 
                     {songinfo}
@@ -235,3 +299,16 @@ render()
     }
 }
 
+=======
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><a href="/coder">Rock It</a></td>
+                    <td>Public</td>
+                    <td>1</td>
+                    
+                </tr>
+            </tbody>
+        </Table>
+    </div>)
+>>>>>>> changes
