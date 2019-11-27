@@ -5,14 +5,20 @@ import MonacoEditor from 'react-monaco-editor';
 import { Button,Grid, Row, Col,Alert} from 'react-bootstrap';
 import './Coder.css'
 
+
+
 export default class Coder extends Component {
+  
+  
     
   constructor(props) {
     
     super(props);
     this.state =
     {
+      songname:'',
       code: '# type your code...',
+      jammerlist:[],
 
      };
 
@@ -45,11 +51,35 @@ export default class Coder extends Component {
     //TODO need to do a graph QL call to the DB to pull all the users and list
     //them
   }
+  componentDidMount(){
+    // TODO: need to change the jammer list by pulling from teh database 
+    this.setState({jammerlist:["baivab.pokhrel","testuser"]});
+       
+   
+  }
   render() {
     const code = this.state.code;
     const options = {
       selectOnLineNumbers: true
     };
+
+    const jammers = this.state.jammerlist.map((jammerlist) => 
+    {
+        
+        return (
+            
+          <div key={jammerlist}>
+          <ul>
+            <li>
+            {jammerlist}
+          </li>
+          </ul>
+    
+    
+          </div >
+                );
+        });
+
     return (
         <div className='Coder'>
     <Grid>
@@ -77,15 +107,7 @@ export default class Coder extends Component {
     
     <div >
       <Alert >Jammer's:
-        <div>
-      <ol>
-        <li>
-        baivab.pokhrel
-      </li>
-      </ol>
-
-
-      </div >
+       {jammers}
     </Alert>
     </div>
     

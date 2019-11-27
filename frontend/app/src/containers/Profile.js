@@ -6,7 +6,22 @@ import
     { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
 } from 'react-bootstrap'
 
-
+//TODO: Need to pull this data from DB
+const userhistoryinfo=
+[
+    {
+    
+    song_name:"Baivab",
+    song_type:"Public",
+    song_collab:"1"
+},
+{
+   
+    song_name:"Pokhrel",
+    song_type:"Private",
+    song_collab:"2"
+},
+]
 
 export default class Profile extends Component {
     
@@ -46,6 +61,7 @@ export default class Profile extends Component {
     
      
     }
+    
     handleClose = () => this.setState({show:false});
     handleShow = () => this.setState({show:true});
     
@@ -171,13 +187,36 @@ const JammerInfo = (props) => (
                         </ListGroup>    
     </div>
 )
-const JammerHistory = (props) => (
+
+
+class JammerHistory extends Component{
+
+
+render()
+{
+    const songinfo = userhistoryinfo.map((userhistoryinfo) => 
+    {
+        
+        return (
+            
+            <tbody key={userhistoryinfo.song_name}>
+                    <tr>
+                    
+                    <td ><a href={"/coder/"+userhistoryinfo.song_name} >{userhistoryinfo.song_name}</a></td>
+                    <td>{userhistoryinfo.song_type}</td>
+                    <td >{userhistoryinfo.song_collab}</td>
+                    </tr>
+            </tbody>
+                );
+        });
+
+    return (
     <div className="JammerHistory">
         <h2>Jammer History</h2>
-        <Table striped bordered responsive >
+        <Table striped bordered responsive  >
             <thead>
                 <tr>
-                    <td>#</td>
+                    
                     <td>Song Name</td>
                     <td>Privacy</td>
                     <td>Jammers</td>
@@ -185,15 +224,14 @@ const JammerHistory = (props) => (
                     
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="/coder">Rock It</a></td>
-                    <td>Public</td>
-                    <td>1</td>
+            
+                
+                    {songinfo}
                     
-                </tr>
-            </tbody>
+                
+            
         </Table>
     </div>)
+    }
+}
 
