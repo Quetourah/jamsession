@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify';
 import config from './config';
 import * as monaco from 'monaco-editor'
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
@@ -14,16 +15,16 @@ Amplify.configure({
     userPoolId: config.cognito.USER_POOL_ID,
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID
-  },
-  API: {
-    endpoints: [
-      {
-        name: "profile",
-        endpoint: config.graphql.URL,
-        region: config.graphql.REGION
-      }
-    ]
-  }
+  } 
+});
+
+let myAppConfig = {
+  aws_appsync_graphqlEndpoint: config.graphql.URL,
+  aws_appsync_region: config.graphql.REGION,
+  aws_appsync_authenticationType: config.graphql.AUTHENTICATION_TYPE
+};
+
+Amplify.configure(myAppConfig);
   /*,
   Storage: {
     region: config.s3.REGION,
@@ -39,7 +40,6 @@ Amplify.configure({
       }
     ]
   }*/
-});
 
 
 monaco.editor.create(document.getElementById('root'), {
