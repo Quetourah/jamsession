@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import MonacoEditor from 'react-monaco-editor';
-import { Button,Grid, Row, Col,Alert} from 'react-bootstrap';
+import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup} from 'react-bootstrap';
 import './Coder.css'
 
 
@@ -19,6 +19,7 @@ export default class Coder extends Component {
       songname:'',
       code: '# type your code...',
       jammerlist:[],
+      show:false,
 
      };
 
@@ -46,6 +47,8 @@ export default class Coder extends Component {
     })
     
   }
+  handleClose = () => this.setState({show:false});
+  handleShow = () => this.setState({show:true});
   handleCollab(){
     //TODO: need to do a graph QL call to the DB to pull all the users and list
     //them
@@ -108,7 +111,30 @@ export default class Coder extends Component {
     <div>
       <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Play</Button>
       <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
-      <Button onClick={this.handleCollab} bsSize="large" block bsStyle="danger">Add Jammer</Button>
+      <Button onClick={this.handleShow} bsSize="large" block bsStyle="danger">Add Jammer</Button>
+                            <Modal show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Please write the name of jammer you want to add</Modal.Title>
+                                </Modal.Header>
+                                <InputGroup >
+                                      <h3>Jammer Name:</h3>
+                                    <FormControl
+                                        
+                                        placeholder="Jammer Name"
+                                        //value={this.state.song_name}
+                                        //onChange={this.handleName}
+                                        />
+                                    
+                                    </InputGroup >
+                                <Modal.Footer>
+                                <Button variant="secondary" onClick={this.handleClose}>
+                                Close
+                                </Button>
+                                <Button name="addjammer" onClick={this.handleCollab} variant="primary"  >
+                                Add Jammer
+                                </Button>
+                            </Modal.Footer>
+                            </Modal>
       
     </div>
     
