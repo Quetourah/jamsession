@@ -44,18 +44,14 @@ export default class Profile extends Component {
        this.handleCreateSong=this.handleCreateSong.bind(this);
       
     }
-    state = { songs: [] }
-    async componentDidMount(){
+    
+    componentDidMount(){
         const user = Auth.currentUserInfo();
          
         user.then(function(result) {
             this.setState({username:result.username})
             this.setState({email:result.attributes.email})
             }.bind(this));
-        
-        const apiData = await API.graphql(graphqlOperation(listSongs))
-        const songs = apiData.data.listSongs.items
-        this.setState({ songs })
     }
     
     handleClose = () => this.setState({show:false});
@@ -185,7 +181,7 @@ const JammerInfo = (props) => (
 )
 
 
-class JammerHistory extends Component{
+/**class JammerHistory extends Component{
 
 
 render()
@@ -229,5 +225,40 @@ render()
         </Table>
     </div>)
     }
+}**/
+class JammerHistory extends Component {
+    state = { songs: [] }
+    async componentDidMount() {
+        try {
+            const apiData = await API.graphql(graphqlOperation(listSongs))
+            const songs = apiData.data.listSongs.items
+            this.setState({ songs })
+        } catch (err) {
+            console.log('error: ', err)
+        }
+    }
+    render() {
+        
+        return (
+            //className="JammerHistory">
+            <div>
+                {
+                    this.state.songs.map((rest, i) => (
+                        <div key={i} style={styles.item}>
+                            <p style={styles.title}>{rest.title}</p>
+                        </div>
+                    ))
+                }
+          
+                </div>)
+        
+    }
 }
-
+const styles = {
+    item: {
+        padding: 10,
+        borderBottom: '2px solid #ddd'
+    },
+    title: { fontSize: 22 },
+    //description: { color: 'rgba(0, 0, 0, .45)' }
+}

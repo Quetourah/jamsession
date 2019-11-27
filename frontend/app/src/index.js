@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify';
 import config from './config';
 import * as monaco from 'monaco-editor'
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
