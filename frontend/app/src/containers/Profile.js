@@ -136,6 +136,7 @@ export default class Profile extends Component {
                                     <InputGroup >
                                     <h3>Private/ Public</h3>
                                     <FormControl
+                                        name="songname"
                                         placeholder="Enter Private or Public"
                                         value={this.state.song_type}
                                         onChange={this.handleType}
@@ -146,6 +147,7 @@ export default class Profile extends Component {
                                     <InputGroup >
                                     <h3>Add Collaborators</h3>
                                     <FormControl
+
                                         placeholder="Add Collaborators separating by comma"
                                         value={this.state.song_collaborators}
                                         onChange={this.handleCollab}
@@ -158,7 +160,7 @@ export default class Profile extends Component {
                                 <Button variant="secondary" onClick={this.handleClose}>
                                 Close
                                 </Button>
-                                <Button variant="primary" onClick={this.handleCreateSong}>
+                                <Button name="createsong" onClick={this.handleCreateSong} variant="primary"  >
                                 Create a New Song
                                 </Button>
                             </Modal.Footer>
