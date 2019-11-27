@@ -1,11 +1,9 @@
 
 import React,{Component} from "react";
 import "./Profile.css";
-import {Auth} from 'aws-amplify'
-import 
-    { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
-} from 'react-bootstrap'
-
+import {Auth,API, graphqlOperation} from 'aws-amplify'
+import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap'
+import listSongs from "../graphql/Queries";
 
 //TODO: Need to pull this data from DB
 const userhistoryinfo=
