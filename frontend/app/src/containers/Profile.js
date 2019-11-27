@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import "./Profile.css";
 import {Auth,API, graphqlOperation} from 'aws-amplify'
 import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap'
-import listSongs from "../graphql/Queries";
+import listSongs from "./graphql/Queries";
 
 //TODO: Need to pull this data from DB
 const userhistoryinfo=
@@ -42,22 +42,20 @@ export default class Profile extends Component {
        this.handleType=this.handleType.bind(this);
        this.handleCollab=this.handleCollab.bind(this);
        this.handleCreateSong=this.handleCreateSong.bind(this);
-  
       
     }
-    componentDidMount() 
-    {
+    state = { songs: [] }
+    async componentDidMount(){
         const user = Auth.currentUserInfo();
-        
-        
+         
         user.then(function(result) {
             this.setState({username:result.username})
             this.setState({email:result.attributes.email})
-            
-            
-
-      }.bind(this));
-       
+            }.bind(this));
+        
+        const apiData = await API.graphql(graphqlOperation(listSongs))
+        const songs = apiData.data.listSongs.items
+        this.setState({ songs })
     }
     
     handleClose = () => this.setState({show:false});
