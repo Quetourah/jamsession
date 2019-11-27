@@ -48,11 +48,13 @@ class App extends Component {
     if(this.state.isAuthenticated)
     {
       const user = Auth.currentUserInfo();
-    
+    console.log(user);
         
         
         user.then(function(result) {
           this.props.history.push(`/profile/${result.username}`);
+          
+
         }.bind(this));
   
         }

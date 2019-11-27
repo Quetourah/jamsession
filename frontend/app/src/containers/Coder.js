@@ -24,6 +24,10 @@ export default class Coder extends Component {
 
     
   }
+  editorDidMount(editor, monaco) {
+    console.log('editorDidMount', editor);
+    
+  }
   
   onChange(newValue, e) 
   {
@@ -43,17 +47,19 @@ export default class Coder extends Component {
     
   }
   handleCollab(){
-    //TODO need to do a graph QL call to the DB to pull all the users and list
+    //TODO: need to do a graph QL call to the DB to pull all the users and list
     //them
   }
 
   handleSave(){
-    //TODO need to do a graph QL call to the DB to pull all the users and list
+    //TODO:  need to do a graph QL call to the DB to pull all the users and list
     //them
   }
   componentDidMount(){
-    // TODO: need to change the jammer list by pulling from teh database 
+    // TODO: need to change the jammer list by pulling from the database 
     this.setState({jammerlist:["baivab.pokhrel","testuser"]});
+    this.setState({songname: this.props.location.pathname.slice(7,)});
+
        
    
   }
@@ -93,6 +99,7 @@ export default class Coder extends Component {
         value={code}
         options={options}
         onChange={this.onChange.bind(this)}
+        editorDidMount={this.editorDidMount.bind(this)}
         
       />
       </Col>

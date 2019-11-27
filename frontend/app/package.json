@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@convergencelabs/monaco-collab-ext": "^0.1.1",
     "aws-amplify": "^1.2.4",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
@@ -42,5 +41,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@convergencelabs/monaco-collab-ext": "^0.1.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "enzyme-adapter-react-16": "^1.15.1"
   }
 }

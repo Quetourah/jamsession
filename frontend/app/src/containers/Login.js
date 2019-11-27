@@ -53,8 +53,9 @@ export default class Login extends Component {
           <FormGroup controlId="username" bsSize="large">
             <ControlLabel>Username</ControlLabel>
             <FormControl
-              autoFocus
               type="text"
+              autoFocus
+              name= "username"
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -65,6 +66,7 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
+              name= 'password'
             />
           </FormGroup>
           <LoaderButton

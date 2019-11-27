@@ -6,6 +6,7 @@ import
     { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl
 } from 'react-bootstrap'
 
+
 //TODO: Need to pull this data from DB
 const userhistoryinfo=
 [
@@ -58,8 +59,7 @@ export default class Profile extends Component {
             
 
       }.bind(this));
-    
-     
+       
     }
     
     handleClose = () => this.setState({show:false});
@@ -76,7 +76,7 @@ export default class Profile extends Component {
     handleCollab(event){
         this.setState({song_collaborators: event.target.value});
     }
-    handleCreateSong(event){
+    handleCreateSong(){
         
         // TODO: Write these info to the DB
         //console.log(this.state.song_name);
