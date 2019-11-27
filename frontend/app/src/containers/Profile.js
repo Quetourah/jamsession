@@ -4,7 +4,7 @@ import "./Profile.css";
 import {Auth,API, graphqlOperation} from 'aws-amplify'
 import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap'
 import {listSongs} from "../graphql/Queries";
-import {createSong} from "../graphql/Mutations";
+import {createSongs} from "../graphql/Mutations";
 
 //TODO: Need to pull this data from DB
 const userhistoryinfo=
@@ -238,6 +238,22 @@ class JammerHistory extends Component {
             console.log('error: ', err)
         }
     }
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+    createSongs = async () => {
+        const { title } = this.state
+        if (title === '') return
+        try {
+            const song = { title }
+            const songs = [...this.state.songs, song]
+            this.setState({ songs, title: ''})
+            await API.graphql(graphqlOperation(createSongs, { input: song }))
+            console.log('song successfully created!')
+        } catch (err) {
+            console.log('error: ', err)
+        }
+    }
     render() {
         
         return (
@@ -245,7 +261,7 @@ class JammerHistory extends Component {
             <div>
                 {
                     this.state.songs.map((rest, i) => (
-                        <div key={i} style={styles.item}>
+                        <div style={styles.item} key={i}>
                             <p style={styles.title}>{rest.title}</p>
                         </div>
                     ))

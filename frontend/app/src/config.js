@@ -6,11 +6,10 @@ export default {
         IDENTITY_POOL_ID: "us-east-2:ebf0402f-1a79-466e-9df3-e4807aece184"
     },
     graphql: {
-        //URL: "https://svg45ofuvzbnjdfoueqv73ptsm.appsync-api.us-east-2.amazonaws.com/graphqlGRAPHQL_URL",
+        //URL: "https://svg45ofuvzbnjdfoueqv73ptsm.appsync-api.us-east-2.amazonaws.com/graphq",
         URL: "https://giz5pdnpijdw5bnzjsj4bi2qwa.appsync-api.us-east-2.amazonaws.com/graphql",
         REGION: "us-east-2",
         AUTHENTICATION_TYPE: "AMAZON_COGNITO_USER_POOLS"
-        //AUTHENTICATION_TYPE: API
       },
     s3: {
         REGION: "us-east-2",

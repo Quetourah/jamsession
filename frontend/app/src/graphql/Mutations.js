@@ -1,9 +1,9 @@
-const createSong = `mutation createSong($title:String!) {
-  createTodo(input:{
+const createSongs = `mutation createSongs($title:String!) {
+  createSongs(input:{
     title:$title
   }){
     id
     title
   }
 }`;
-export { createSong };
+export { createSongs };
