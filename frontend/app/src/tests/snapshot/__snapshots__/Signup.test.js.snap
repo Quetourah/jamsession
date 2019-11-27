@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders sign up page correctly 1`] = `
+<div
+  className="Signup"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        autoFocus={true}
+        className="form-control"
+        id="email"
+        onChange={[Function]}
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        autoFocus={true}
+        className="form-control"
+        id="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="form-control"
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <span
+      className="help-block"
+    >
+      Make sure password has at least 8 characters. Include upper case letters, numbers and special characters.
+    </span>
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="confirmPassword"
+      >
+        Confirm Password
+      </label>
+      <input
+        className="form-control"
+        id="confirmPassword"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      className="LoaderButton  btn btn-lg btn-default btn-block"
+      disabled={true}
+      type="submit"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>
+`;

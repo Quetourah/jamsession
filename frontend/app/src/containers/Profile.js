@@ -98,7 +98,7 @@ export default class Profile extends Component {
                 <Col s={6} md={4}>
                 <div>
                             <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
-                            Lets Go Live
+                            Create Song
                             </Button>
                     
                             <Modal show={this.state.show} onHide={this.handleClose}>

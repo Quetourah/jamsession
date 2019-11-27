@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@convergencelabs/monaco-collab-ext": "^0.1.1",
     "aws-amplify": "^1.2.4",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "enzyme": "^3.10.0",
     "jest": "^24.9.0",
     "monaco-editor": "^0.18.1",
     "monaco-editor-webpack-plugin": "^1.7.0",
@@ -22,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test ",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -40,6 +40,11 @@ export default class Coder extends Component {
     //TODO need to do a graph QL call to the DB to pull all the users and list
     //them
   }
+
+  handleSave(){
+    //TODO need to do a graph QL call to the DB to pull all the users and list
+    //them
+  }
   render() {
     const code = this.state.code;
     const options = {
@@ -65,7 +70,9 @@ export default class Coder extends Component {
     <Col xs={6} md={4}>
     <div>
       <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Play</Button>
+      <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
       <Button onClick={this.handleCollab} bsSize="large" block bsStyle="danger">Add Jammer</Button>
+      
     </div>
     
     <div >
