@@ -29,6 +29,12 @@ it('initial email value',()=>{
         
         expect(wrapper.state('song_type')).toBe('public');
     })
+
+    it('initial song exists value',()=>{
+        wrapper = shallow(<Profile/>);
+        
+        expect(wrapper.state('song_exists')).toBe(false);
+    })
     
     it('show value after handling show',()=>{
         wrapper = shallow(<Profile/>);

@@ -18,11 +18,14 @@ export default class Coder extends Component {
     {
       songname:'',
       code: '# type your code...',
+      add_jammer:'',
       jammerlist:[],
       show:false,
 
      };
-
+    this.handleAddJammer=this.handleAddJammer.bind(this);
+    this.handleCollab=this.handleCollab.bind(this);
+    
     
   }
   editorDidMount(editor, monaco) {
@@ -49,9 +52,12 @@ export default class Coder extends Component {
   }
   handleClose = () => this.setState({show:false});
   handleShow = () => this.setState({show:true});
+  handleAddJammer(event){
+    this.setState({add_jammer: event.target.value});
+}
   handleCollab(){
-    //TODO: need to do a graph QL call to the DB to pull all the users and list
-    //them
+    //TODO: need to do a graph QL call to the DB to put this user in this specific song as a collaborator if this user exists
+    console.log(this.state.add_jammer);
   }
 
   handleSave(){
@@ -121,8 +127,8 @@ export default class Coder extends Component {
                                     <FormControl
                                         
                                         placeholder="Jammer Name"
-                                        //value={this.state.song_name}
-                                        //onChange={this.handleName}
+                                        value={this.state.add_jammer}
+                                        onChange={this.handleAddJammer}
                                         />
                                     
                                     </InputGroup >
