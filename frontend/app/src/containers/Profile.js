@@ -7,22 +7,6 @@ import {listSongs} from "../graphql/Queries";
 import {createSongs} from "../graphql/Mutations";
 
 //TODO: Need to pull this data from DB
-const userhistoryinfo=
-[
-    {
-    
-    song_name:"Baivab",
-    song_type:"Public",
-    song_collab:"1"
-},
-{
-   
-    song_name:"Pokhrel",
-    song_type:"Private",
-    song_collab:"2"
-},
-]
-
 export default class Profile extends Component {
     
     constructor(props) {
@@ -229,7 +213,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody key={i}>
                                 <tr>
-                                    <td><a href={""}>{rest.title}</a></td>
+                                    <td><a href={"/coder/"+this.state.songs.title}>{rest.title}</a></td>
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>
