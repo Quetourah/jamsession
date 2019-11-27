@@ -8,9 +8,6 @@ ServerQuit.add({
 	1.exit();
 }, Server.default);
 
-<<<<<<< HEAD
-=======
 Quarks.addFolder("/root/.local/share/SuperCollider/downloaded-quarks/BatLib");
 Quarks.addFolder("/root/.local/share/SuperCollider/downloaded-quarks/FoxDot");
->>>>>>> changes
 

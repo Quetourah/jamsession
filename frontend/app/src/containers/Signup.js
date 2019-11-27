@@ -15,11 +15,7 @@ export default class Signup extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-<<<<<<< HEAD
-      newUser: null,
-=======
       newUser: null
->>>>>>> changes
     };
   }
 
