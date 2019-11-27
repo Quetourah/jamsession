@@ -134,6 +134,7 @@ class JammerHistory extends Component {
             this.setState({ songs, title: ''})
             await API.graphql(graphqlOperation(createSongs, { input: song }))
             console.log('song successfully created!')
+            //this.props.history.push(`/coder/${this.state.title}`);
         } catch (err) {
             console.log('error: ', err)
         }
