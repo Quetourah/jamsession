@@ -1,6 +1,7 @@
 icecast2: icecast2 -c /etc/icecast2/icecast.xml
 jackd: jackd -r -d dummy -r 44100
 darkice: darkice -c /etc/darkice.cfg
+web_server: python /server.py
 #sclang: xvfb-run -a sclang /radio.rc
-foxdot: python -m FoxDot --pipe "Scale.default='minor'; Clock.bpm=140; c1 >> play('@', dur=1/4. sample=P[:8].rotate([0,1,3]), rate=4, pan=-0.5)"
+#foxdot: python -m FoxDot --pipe "Scale.default='minor'; Clock.bpm=140; c1 >> play('@', dur=1/4. sample=P[:8].rotate([0,1,3]), rate=4, pan=-0.5)"
 #net_buff: nc -U /tmp/socket
