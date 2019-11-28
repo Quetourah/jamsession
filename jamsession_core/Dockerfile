@@ -16,7 +16,6 @@ RUN apt-get install -y git cmake curl python-pip netcat-openbsd build-essential 
 RUN apt install -y python-tk
 RUN apt clean
 
-
 RUN pip install FoxDot
 
 RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz && \

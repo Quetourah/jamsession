@@ -27,5 +27,12 @@ def hello():
         print("RES: {}".format(res))
         return jsonify({'code':value}), 200
 
+@app.route("/demo", methods=['POST'])
+def demo():
+    if request.method == 'POST':
+        shell = subprocess.Popen("xvfb-run -a sclang /radio.sc".split(), stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return "OK"
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
