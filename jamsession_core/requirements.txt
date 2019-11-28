@@ -1,9 +1,5 @@
 flask
 flask-cors
-<<<<<<< HEAD
-FoxDot
-=======
 FoxDot
 python-prctl
 
->>>>>>> changes
