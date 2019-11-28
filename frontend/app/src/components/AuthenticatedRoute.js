@@ -10,12 +10,8 @@ export default ({ component: C, props: cProps, ...rest }) =>
         : <Redirect
             to={`/login?redirect=${props.location.pathname}${props.location
               .search}`}
-<<<<<<< HEAD
             
           />}
  
 
-=======
-          />}
->>>>>>> changes
   />;
