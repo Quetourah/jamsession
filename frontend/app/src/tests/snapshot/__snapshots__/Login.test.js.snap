@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders login page correctly 1`] = `
+<div
+  className="Login"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="username"
+      >
+        Username
+      </label>
+      <input
+        autoFocus={true}
+        className="form-control"
+        id="username"
+        name="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group form-group-lg"
+    >
+      <label
+        className="control-label"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="form-control"
+        id="password"
+        name="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      className="LoaderButton  btn btn-lg btn-default btn-block"
+      disabled={true}
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;

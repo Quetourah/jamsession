@@ -6,8 +6,16 @@
     "aws-amplify": "^1.2.4",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+<<<<<<< HEAD
+    "enzyme": "^3.10.0",
+    "jest": "^24.9.0",
     "monaco-editor": "^0.18.1",
     "monaco-editor-webpack-plugin": "^1.7.0",
+    "randomstring": "^1.1.5",
+=======
+    "monaco-editor": "^0.18.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
+>>>>>>> changes
     "react": "^16.11.0",
     "react-bootstrap": "^0.33.0",
     "react-dom": "^16.11.0",
@@ -15,12 +23,20 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+<<<<<<< HEAD
+    "react-test-renderer": "^16.12.0",
+=======
+>>>>>>> changes
     "terminal-in-react": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+<<<<<<< HEAD
+    "test": "react-scripts test ",
+=======
     "test": "react-scripts test",
+>>>>>>> changes
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,5 +53,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
+  },
+  "devDependencies": {
+    "@convergencelabs/monaco-collab-ext": "^0.1.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "enzyme-adapter-react-16": "^1.15.1"
+=======
+>>>>>>> changes
   }
 }

@@ -12,7 +12,11 @@ RUN apt-get update && \
     apt-get install -y icecast2 darkice libasound2 libasound2-plugins alsa-utils alsa-oss jack-tools supercollider xvfb && \
     apt-get clean
 
+<<<<<<< HEAD
+RUN apt-get install -y git cmake curl python-pip netcat-openbsd
+=======
 RUN apt-get install -y git cmake curl python-pip netcat-openbsd build-essential libcap-dev
+>>>>>>> changes
 
 RUN pip install FoxDot
 
@@ -37,7 +41,10 @@ COPY tmp_Foxdot /tmp_Foxdot
 COPY Procfile Procfile
 COPY foxsamply.sh /foxsamply.sh
 COPY foxdot.scd /foxdot.scd
+<<<<<<< HEAD
+=======
 COPY startup.scd /startup.scd
+>>>>>>> changes
 
 EXPOSE 8000 10000 4000
 

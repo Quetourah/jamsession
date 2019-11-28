@@ -14,6 +14,12 @@ export default class Login extends Component {
       username: "",
       password: ""
     };
+<<<<<<< HEAD
+    
+
+    
+=======
+>>>>>>> changes
   }
 
 
@@ -35,6 +41,10 @@ export default class Login extends Component {
     try {
       await Auth.signIn(this.state.username, this.state.password);
       this.props.userHasAuthenticated(true);
+<<<<<<< HEAD
+      this.props.history.push(`/profile/${this.state.username}`);
+=======
+>>>>>>> changes
       
     } catch (e) {
       alert(e.message);
@@ -49,8 +59,14 @@ export default class Login extends Component {
           <FormGroup controlId="username" bsSize="large">
             <ControlLabel>Username</ControlLabel>
             <FormControl
+<<<<<<< HEAD
+              type="text"
+              autoFocus
+              name= "username"
+=======
               autoFocus
               type="text"
+>>>>>>> changes
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -61,6 +77,10 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
+<<<<<<< HEAD
+              name= 'password'
+=======
+>>>>>>> changes
             />
           </FormGroup>
           <LoaderButton
