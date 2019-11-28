@@ -13,6 +13,9 @@ RUN apt-get update && \
     apt-get clean
 
 RUN apt-get install -y git cmake curl python-pip netcat-openbsd build-essential libcap-dev
+RUN apt install -y python-tk
+RUN apt clean
+
 
 RUN pip install FoxDot
 
@@ -39,7 +42,7 @@ COPY foxsamply.sh /foxsamply.sh
 COPY foxdot.scd /foxdot.scd
 COPY startup.scd /startup.scd
 
-EXPOSE 8000 10000 4000
+EXPOSE 8000 10000 5000
 
 RUN mv /etc/security/limits.d/audio.conf.disabled /etc/security/limits.d/audio.conf && \
 	usermod -a -G audio root
