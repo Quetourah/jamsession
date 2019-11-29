@@ -45,7 +45,7 @@ def demo():
         return "OK"
 
 @app.route("/kill", methods=['POST'])
-def demo():
+def kill():
     if request.method == 'POST':
         if kill_shell():
             return "Killed sclang instance"
