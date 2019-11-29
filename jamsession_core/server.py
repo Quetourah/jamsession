@@ -22,10 +22,9 @@ def hello():
             f.write(value)
         
         
-        res = subprocess.Popen("xvfb-run -a sclang /tmp_comm.sc", stdout=subprocess.PIPE, shell=True, preexec_fn=lambda: prctl.set_pdeathsig(signal.SIGKILL))
-
-        print("RES: {}".format(res))
-        return jsonify({'code':value}), 200
+        shell = subprocess.Popen("xvfb-run -a sclang /tmp_comm.sc".split(), stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return "OK", 200
 
 @app.route("/demo", methods=['POST'])
 def demo():
