@@ -6,19 +6,9 @@ import subprocess, os, signal, prctl
 app = Flask(__name__)
 CORS(app)
 
-shell = subprocess.Popen("xvfb-run -a sclang /radio.sc".split(), stdin=subprocess.PIPE,
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
 @app.route("/")
 def index():
     return "Index!"
-
-def kill_shell():
-    try:
-        shell.kill()
-        return True
-    except:
-        return False
 
 @app.route("/interpret", methods=['POST'])
 def hello():
@@ -47,8 +37,6 @@ def demo():
 @app.route("/kill", methods=['POST'])
 def kill():
     if request.method == 'POST':
-        if kill_shell():
-            return "Killed sclang instance"
         return "Error killing sclang instance"
 
 if __name__ == "__main__":
