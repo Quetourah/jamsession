@@ -1,1 +1,6 @@
-Foxdot.start
+Server.default.waitForBoot({
+Quarks.install("FoxDot");
+thisProcess.platform.recompile;
+f = FoxDot();
+f.start;
+});
