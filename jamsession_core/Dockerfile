@@ -31,6 +31,7 @@ RUN pip install -r /requirements.txt
 
 COPY icecast.xml /etc/icecast2/icecast.xml
 COPY darkice.cfg /etc/darkice.cfg
+COPY FoxStart /FoxStart
 
 COPY startup.scd /root/.config/SuperCollider/startup.scd
 COPY radio.sc /radio.sc
