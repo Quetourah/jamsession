@@ -1,7 +1,7 @@
 # Write a flask app here that writes the source code to a file and triggers a script to evaluate SuperCollider
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import subprocess, os, signal, prctl
+import subprocess, os, signal
 
 app = Flask(__name__)
 CORS(app)
@@ -25,6 +25,19 @@ def hello():
         
         shell = subprocess.Popen("xvfb-run -a sclang /tmp_comm.sc".split(), stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return "OK", 200
+
+@app.route("/foxdot", methods=['POST'])
+def foxdot():
+    if request.method == 'POST':
+        value = request.values['code']
+        if value is None:
+            return jsonify({"msg": "Need the `code` present"}), 400
+        
+        cmd = "python -m FoxDot --pipe\n{}\n\n".format(value)
+        print(cmd)
+        shell = subprocess.Popen(cmd, stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
         return "OK", 200
 
 @app.route("/demo", methods=['POST'])
