@@ -35,12 +35,12 @@ def foxdot():
             return jsonify({"msg": "Need the `code` present"}), 400
         
         cmd = "python -m FoxDot --pipe\n{}\n\n".format(value)
-        print(cmd)
-        sc = subprocess.Popen("xvfb-run -a sclang tmp_Foxdot", stdin=subprocess.PIPE,
+        # print(cmd)
+        sc = subprocess.Popen("xvfb-run -a sclang tmp_Foxdot && {}".format(cmd), stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        time.sleep(2)
-        shell = subprocess.Popen(cmd, stdin=subprocess.PIPE,
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        # time.sleep(2)
+        # shell = subprocess.Popen(cmd, stdin=subprocess.PIPE,
+        #                  stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         return "OK", 200
 
 @app.route("/demo", methods=['POST'])
