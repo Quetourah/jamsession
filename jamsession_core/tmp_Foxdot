@@ -1,5 +1,5 @@
 Server.default.waitForBoot({
 Quarks.install("FoxDot");
 thisProcess.platform.recompile;
-FoxDot.start;
+x = FileReader.readInterpret("FoxStart").postcs;
 });
