@@ -1,8 +1,10 @@
 export default {
     cognito: {
         REGION: "us-east-2",
-        USER_POOL_ID: "us-east-2_gDwVQu0wm",
-        APP_CLIENT_ID: "52p33vb7r0fae57tkjd1j6ggof",
+        //USER_POOL_ID: "us-east-2_gDwVQu0wm",
+        USER_POOL_ID:"us-east-2_EwzimWOth",
+        //APP_CLIENT_ID: "52p33vb7r0fae57tkjd1j6ggof",
+        APP_CLIENT_ID:"5qdqs3kc6ng68erahvkatkc9rc",
         IDENTITY_POOL_ID: "us-east-2:ebf0402f-1a79-466e-9df3-e4807aece184"
     },
     graphql: {
