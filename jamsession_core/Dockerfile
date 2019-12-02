@@ -43,6 +43,7 @@ COPY foxdot.scd /foxdot.scd
 COPY startup.scd /startup.scd
 
 EXPOSE 8000 10000 5000
+RUN xvfb-run -a sclang tmp_Foxdot
 
 RUN mv /etc/security/limits.d/audio.conf.disabled /etc/security/limits.d/audio.conf && \
 	usermod -a -G audio root
