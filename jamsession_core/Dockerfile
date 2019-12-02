@@ -27,6 +27,7 @@ RUN curl -o forego.tgz https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-
 COPY asoundrc /root/.asoundrc
 COPY server.py /server.py
 COPY requirements.txt /requirements.txt
+COPY start_script.sh /start_script.sh
 RUN pip install -r /requirements.txt
 
 COPY icecast.xml /etc/icecast2/icecast.xml
@@ -43,10 +44,10 @@ COPY foxdot.scd /foxdot.scd
 COPY startup.scd /startup.scd
 
 EXPOSE 8000 10000 5000
-RUN xvfb-run -a sclang tmp_Foxdot
+#RUN xvfb-run -a sclang /tmp_Foxdot
 
 RUN mv /etc/security/limits.d/audio.conf.disabled /etc/security/limits.d/audio.conf && \
 	usermod -a -G audio root
 
-CMD ["forego", "start"]
+CMD ["sh", "/start_script.sh"]
 
