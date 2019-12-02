@@ -36,7 +36,7 @@ def foxdot():
         
         cmd = "python -m FoxDot --pipe\n{}\n\n".format(value)
         # print(cmd)
-        sc = subprocess.Popen("xvfb-run -a sclang tmp_Foxdot && {}".format(cmd), stdin=subprocess.PIPE,
+        sc = subprocess.Popen("{}".format(cmd), stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         # time.sleep(2)
         # shell = subprocess.Popen(cmd, stdin=subprocess.PIPE,
