@@ -39,11 +39,13 @@ export default class Coder extends Component {
     
   }
   onClick(){
-    axios.post(
-      'http://localhost:5000/hello',
-          { 'code': this.state.code},
-          { headers: { 'ContentType': 'application/json' } }
-    ).then((resp) => {
+    var formData = new FormData();
+      formData.append("code", this.state.code);
+      axios.post("http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:5000/interpret", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(resp => {
       console.log(resp)
     }).catch((err)=> {
       console.log(err)

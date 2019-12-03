@@ -1,10 +1,10 @@
 
 import React,{Component} from "react";
 import "./Profile.css";
-import Amplify, {Auth,API, graphqlOperation} from 'aws-amplify';
-import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
-import {listSongs} from "../graphql/Queries";
-import {createSongs} from "../graphql/Mutations";
+import /*Amplify,*/ {Auth}/*,API, graphqlOperation}*/ from 'aws-amplify';
+import { Row, Col, Image, ListGroup, ListGroupItem}/*, Table,Button,Modal,InputGroup,FormControl}*/ from 'react-bootstrap';
+//import {listSongs} from "../graphql/Queries";
+//import {createSongs} from "../graphql/Mutations";
 import JammerHistory from "./JammerHistory";
 
 //TODO: Need to pull this data from DB

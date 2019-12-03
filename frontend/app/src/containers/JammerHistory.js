@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import "./Profile.css";
-import Amplify, {Auth,API, graphqlOperation} from 'aws-amplify';
-import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
+import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
+import { Row, Col, /*Image, ListGroup, ListGroupItem,*/ Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
 import {listSongs} from "../graphql/Queries";
 import {createSongs} from "../graphql/Mutations";
 
@@ -117,7 +117,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody key={i}>
                                 <tr>
-                                    <td><a href={"/coder/"+this.state.songs.title}>{rest.title}</a></td>
+                                    <td><a href={"/coder/"+rest.title}>{rest.title}</a></td>
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>
