@@ -27,7 +27,11 @@ it('initial password value',()=>{
         
         expect(wrapper.state('password')).toBe('');
     })
-    
+ 
+    it("Number of Input Forms", () => {
+        const wrapper = shallow(<Signup />);
+        expect(wrapper.find("FormControl")).toHaveLength(4);
+      });
     
 })
 
