@@ -143,6 +143,13 @@ export default class Coder extends Component {
                                 </Button>
                             </Modal.Footer>
                             </Modal>
+        <div className="container">
+        <audio controls>
+          <source src="http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:8000/stream.mp3" type="audio/mpeg"/>
+         
+          Your browser does not support the audio element.
+      </audio>
+      </div>
       
     </div>
     
@@ -152,13 +159,7 @@ export default class Coder extends Component {
     </Alert>
     </div>
     
-    <div >
-    <Alert className="BuildAlert" >Build Logs:
-    <div>
-
-    </div>
-    </Alert>
-    </div>
+    
     
     </Col>
     </Row>
