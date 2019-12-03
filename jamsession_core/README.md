@@ -15,3 +15,7 @@ This repo contains the core functionality of the streaming service.
 1. install docker with `chmod +x install-docker.sh && sudo sh install-docker.sh`
 1. build the image `sudo sh build_docker_image.sh`
 1. run the service in the background `sudo sh start_docker_container.sh`
+
+### Setup on the Server: (No Docker)
+1. Run `sudo sh server_install.sh`
+1. `forego start`
