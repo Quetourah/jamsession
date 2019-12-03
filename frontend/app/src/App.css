@@ -8,12 +8,9 @@ body {
 
 
 .App .Nav {
-  
-
   font-family: 'Press Start 2P';
   font-weight: bold;
   background-color:rgb(43, 35, 116);
-  
 }
 
 NavItem{

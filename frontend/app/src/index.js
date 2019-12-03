@@ -14,16 +14,17 @@ Amplify.configure({
     region: config.cognito.REGION,
     userPoolId: config.cognito.USER_POOL_ID,
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID
-  } 
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+   
+  }
 });
 
 let myAppConfig = {
   aws_appsync_graphqlEndpoint: config.graphql.URL,
   aws_appsync_region: config.graphql.REGION,
-  aws_appsync_authenticationType: config.graphql.AUTHENTICATION_TYPE
+  aws_appsync_authenticationType: config.graphql.AUTHENTICATION_TYPE,
+  //aws_appsync_apiKey: "da2-of6krb3derdeze4t6lqjs44sii"
 };
-
 Amplify.configure(myAppConfig);
   /*,
   Storage: {

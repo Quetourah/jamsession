@@ -1,11 +1,26 @@
-import Amplify, { Analytics, Storage, API, graphqlOperation } from 'aws-amplify';
+/* eslint-disable */
+// this is an auto generated file. This will be overwritten
 
-const listSongs = `query listSongs {
-  listSongs {
-    items {
-      title
-    }
+export const getSongs = `query GetSongs($songid: ID!) {
+  getSongs(songid: $songid) {
+    songid
+    title
+    author
   }
-}`
-
-export{listSongs};
+}
+`;
+export const listSongs = `query ListSongs(
+  $filter: TableSongsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSongs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      songid
+      title
+      author
+    }
+    nextToken
+  }
+}
+`;
