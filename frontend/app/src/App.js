@@ -6,6 +6,7 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Routes from "./Routes";
 import "./App.css";
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   constructor(props) {
@@ -100,6 +101,8 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <Routes childProps={childProps} />
+       
+        
       </div>
     );
     

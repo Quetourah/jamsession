@@ -27,31 +27,10 @@ it('initial email value',()=>{
         expect(wrapper.state('email')).toBe('');
     })
 
-    it('initial song type value',()=>{
-        wrapper = shallow(<Profile/>);
-        
-        expect(wrapper.state('song_type')).toBe('public');
-    })
 
-    it('initial song exists value',()=>{
-        wrapper = shallow(<Profile/>);
-        
-        expect(wrapper.state('song_exists')).toBe(false);
-    })
-    
-    it('show value after handling show',()=>{
-        wrapper = shallow(<Profile/>);
-        wrapper.instance().handleShow()
-        expect(wrapper.state('show')).toBe(true);
-    })
 
-    it('show value after handling close',()=>{
-        wrapper = shallow(<Profile/>);
-        wrapper.instance().handleClose()
-        expect(wrapper.state('show')).toBe(false);
-    })
 
-    
+
     
     
 })

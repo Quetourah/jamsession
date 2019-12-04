@@ -23,6 +23,33 @@ wrapper = shallow(<JammerHistory/>);
 expect(wrapper.state('title')).toBe('');
 })
 
+it('initial song type value',()=>{
+    wrapper = shallow(<JammerHistory/>);
+    
+    expect(wrapper.state('type')).toBe('public');
+})
+
+it('initial collaborators',()=>{
+    wrapper = shallow(<JammerHistory/>);
+    
+    expect(wrapper.state('collaborators')).toBe('');
+})
+
+
+
+it('show value after handling show',()=>{
+    wrapper = shallow(<JammerHistory/>);
+    wrapper.instance().handleShow()
+    expect(wrapper.state('show')).toBe(true);
+})
+
+it('show value after handling close',()=>{
+    wrapper = shallow(<JammerHistory/>);
+    wrapper.instance().handleClose()
+    expect(wrapper.state('show')).toBe(false);
+})
+
+
 test('title check for creating new song',()=>
 {
 wrapper = shallow(<JammerHistory/>);
