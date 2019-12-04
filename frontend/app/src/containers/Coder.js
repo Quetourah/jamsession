@@ -68,7 +68,7 @@ export default class Coder extends Component {
   }
   componentDidMount(){
     // TODO: need to change the jammer list by pulling from the database 
-    this.setState({jammerlist:["baivab.pokhrel","testuser"]});
+    //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
     this.setState({songname: this.props.location.pathname.slice(7,)});
 
        
@@ -117,7 +117,7 @@ export default class Coder extends Component {
     
     <Col xs={6} md={4}>
     <div>
-      <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Play</Button>
+      <Button onClick={this.onClick.bind(this)} bsSize="large" block bsStyle="danger" >Compile</Button>
       <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
       <Button onClick={this.handleShow} bsSize="large" block bsStyle="danger">Add Jammer</Button>
                             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -154,7 +154,7 @@ export default class Coder extends Component {
     </div>
     
     <div >
-      <Alert >Jammer's:
+      <Alert className="jammers">Jammer's:
        {jammers}
     </Alert>
     </div>

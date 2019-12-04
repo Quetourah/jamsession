@@ -7,7 +7,12 @@ import {createSongs} from "../graphql/Mutations";
 
 
 class JammerHistory extends Component {
-    state = { title: '', songs: [] }
+    state = { 
+            title: '',
+            type:'public',
+            collaborators:'', 
+            songs: []
+    }
     async componentDidMount() {
         try {
             const apiData = await API.graphql(graphqlOperation(listSongs));
@@ -58,7 +63,8 @@ class JammerHistory extends Component {
                                 <h3>Song Name</h3>
                                 <InputGroup >
                                     <FormControl
-                                        name='title'
+                                        className="titleForm"
+                                        name="title"
                                         placeholder="Please Enter the Song Name"
                                         onChange={this.onChange}
                                         value={this.state.title}
@@ -68,9 +74,11 @@ class JammerHistory extends Component {
                                 <InputGroup >
                                     <h3>Private/ Public</h3>
                                     <FormControl
+                                        className="typeForm"
+                                        name="type"
                                         placeholder="Enter Private or Public"
-                                        value={this.state.song_type}
-                                        onChange={this.handleType}
+                                        value={this.state.type}
+                                        onChange={this.onChange}
 
                                     />
 
@@ -78,9 +86,11 @@ class JammerHistory extends Component {
                                 <InputGroup >
                                     <h3>Add Collaborators</h3>
                                     <FormControl
+                                        className="collabForm"
+                                        name="collaborators"
                                         placeholder="Add Collaborators separating by comma"
-                                        value={this.state.song_collaborators}
-                                        onChange={this.handleCollab}
+                                        value={this.state.collaborators}
+                                        onChange={this.onChange}
                                     />
 
                                 </InputGroup >

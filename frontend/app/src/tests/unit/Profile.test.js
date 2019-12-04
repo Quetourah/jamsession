@@ -48,14 +48,7 @@ it('initial email value',()=>{
         expect(wrapper.state('show')).toBe(false);
     })
 
-    it('show value after creating song',()=>{
-        wrapper = shallow(<Profile/>);
-        wrapper.find('FormControl[name="songname"]').simulate('change', {target: {name: 'songname', value: 'test1'}});
-        
-        wrapper.find('Button[name="createsong"]').simulate('click');
-
-        expect(wrapper.state('song_name')).toBe('test1');
-    })
+    
     
     
 })

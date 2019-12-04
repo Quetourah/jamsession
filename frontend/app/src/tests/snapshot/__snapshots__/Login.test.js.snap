@@ -19,8 +19,9 @@ exports[`renders login page correctly 1`] = `
       </label>
       <input
         autoFocus={true}
-        className="username form-control"
+        className="form-control"
         id="username"
+        name="username"
         onChange={[Function]}
         type="text"
         value=""
@@ -36,7 +37,7 @@ exports[`renders login page correctly 1`] = `
         Password
       </label>
       <input
-        className="password form-control"
+        className="form-control"
         id="password"
         onChange={[Function]}
         type="password"

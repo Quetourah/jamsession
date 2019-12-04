@@ -32,6 +32,8 @@ it('initial password value',()=>{
         const wrapper = shallow(<Signup />);
         expect(wrapper.find("FormControl")).toHaveLength(4);
       });
+
+
     
 })
 

@@ -36,6 +36,7 @@ it('initial password value',()=>{
         expect(wrapper.find("FormControl")).toHaveLength(2);
       });
     
+
 })
 
 
