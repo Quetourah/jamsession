@@ -11,6 +11,11 @@ import { shallow } from 'enzyme';
 describe('Test case for initial states',() =>{
 let wrapper;
 
+test('renders', ()=>{
+    wrapper = shallow(<Login/>);
+    expect(wrapper.exists()).toBe(true);
+ })
+
 it('check loader button ',()=>{
 wrapper = shallow(<Login/>);
 expect(wrapper.state('isLoading')).toBe(false);

@@ -10,7 +10,10 @@ import { shallow } from 'enzyme';
 
 describe('Test case for initial states',() =>{
 let wrapper;
-
+test('renders', ()=>{
+    wrapper = shallow(<Profile/>);
+    expect(wrapper.exists()).toBe(true);
+ })
 
 it('initial username value',()=>{
     wrapper = shallow(<Profile/>);

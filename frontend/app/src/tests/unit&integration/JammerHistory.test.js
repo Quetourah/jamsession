@@ -11,6 +11,13 @@ import { shallow } from 'enzyme';
 describe('Test case for initial states',() =>{
 let wrapper;
 
+test('renders', ()=>{
+    wrapper = shallow(<JammerHistory/>);
+    expect(wrapper.exists()).toBe(true);
+ })
+
+
+
 it('check title at the beginning ',()=>{
 wrapper = shallow(<JammerHistory/>);
 expect(wrapper.state('title')).toBe('');
