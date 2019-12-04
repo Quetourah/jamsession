@@ -57,13 +57,13 @@ export default class Coder extends Component {
     this.handleStopButton();
     var formData = new FormData();
       formData.append("code", this.state.code);
-      axios.post("http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:5000/interpret", formData, {
+      axios.post("//ec2-3-133-237-193.us-east-2.compute.amazonaws.com:5000/interpret", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       }).then(resp => {
         this.setState({
-          audio_src: 'http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:8000/stream.mp3',
+          audio_src: '//ec2-3-133-237-193.us-east-2.compute.amazonaws.com:8000/stream.mp3',
           render_player: true
         });
       })
