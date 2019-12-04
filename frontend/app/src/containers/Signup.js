@@ -117,6 +117,8 @@ export default class Signup extends Component {
         <FormGroup controlId="username" bsSize="large">
           <ControlLabel>Username</ControlLabel>
           <FormControl
+            className="username"
+            name="username"
             autoFocus
             type="text"
             value={this.state.username}

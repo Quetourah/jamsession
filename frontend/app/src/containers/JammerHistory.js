@@ -1,12 +1,18 @@
 import React,{Component} from "react";
 import "./Profile.css";
-import Amplify, {Auth,API, graphqlOperation} from 'aws-amplify';
-import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
+import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
+import { Row, Col, /*Image, ListGroup, ListGroupItem,*/ Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
 import {listSongs} from "../graphql/Queries";
 import {createSongs} from "../graphql/Mutations";
 
+
 class JammerHistory extends Component {
-    state = { title: '', songs: [] }
+    state = { 
+            title: '',
+            type:'public',
+            collaborators:'', 
+            songs: []
+    }
     async componentDidMount() {
         try {
             const apiData = await API.graphql(graphqlOperation(listSongs));
@@ -28,7 +34,7 @@ class JammerHistory extends Component {
             this.setState({ songs, title: ''})
             await API.graphql(graphqlOperation(createSongs, { input: song }))
             console.log('song successfully created!');
-            //this.props.history.push(`/coder/${this.state.title}`);
+            //Profile.props.history.push(`/coder/${this.state.title}`);
         } catch (err) {
             console.log('error: ', err);
         }
@@ -57,7 +63,8 @@ class JammerHistory extends Component {
                                 <h3>Song Name</h3>
                                 <InputGroup >
                                     <FormControl
-                                        name='title'
+                                        className="titleForm"
+                                        name="title"
                                         placeholder="Please Enter the Song Name"
                                         onChange={this.onChange}
                                         value={this.state.title}
@@ -67,9 +74,11 @@ class JammerHistory extends Component {
                                 <InputGroup >
                                     <h3>Private/ Public</h3>
                                     <FormControl
+                                        className="typeForm"
+                                        name="type"
                                         placeholder="Enter Private or Public"
-                                        value={this.state.song_type}
-                                        onChange={this.handleType}
+                                        value={this.state.type}
+                                        onChange={this.onChange}
 
                                     />
 
@@ -77,9 +86,11 @@ class JammerHistory extends Component {
                                 <InputGroup >
                                     <h3>Add Collaborators</h3>
                                     <FormControl
+                                        className="collabForm"
+                                        name="collaborators"
                                         placeholder="Add Collaborators separating by comma"
-                                        value={this.state.song_collaborators}
-                                        onChange={this.handleCollab}
+                                        value={this.state.collaborators}
+                                        onChange={this.onChange}
                                     />
 
                                 </InputGroup >
@@ -117,7 +128,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody key={i}>
                                 <tr>
-                                    <td><a href={"/coder/"+this.state.songs.title}>{rest.title}</a></td>
+                                    <td><a href={"/coder/"+rest.title}>{rest.title}</a></td>
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>

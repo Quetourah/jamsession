@@ -1,13 +1,13 @@
 
 import React,{Component} from "react";
 import "./Profile.css";
-import Amplify, {Auth,API, graphqlOperation} from 'aws-amplify';
-import { Row, Col, Image, ListGroup, ListGroupItem, Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
-import {listSongs} from "../graphql/Queries";
-import {createSongs} from "../graphql/Mutations";
+import /*Amplify,*/ {Auth}/*,API, graphqlOperation}*/ from 'aws-amplify';
+import { Row, Col, Image, ListGroup, ListGroupItem}/*, Table,Button,Modal,InputGroup,FormControl}*/ from 'react-bootstrap';
+//import {listSongs} from "../graphql/Queries";
+//import {createSongs} from "../graphql/Mutations";
 import JammerHistory from "./JammerHistory";
 
-//TODO: Need to pull this data from DB
+
 
 export default class Profile extends Component {
     
@@ -19,16 +19,12 @@ export default class Profile extends Component {
        username:'',
        email:'',
        show:false,
-       song_name:'',
-       song_type:'public',
-       song_collaborators:'',
-       song_exists:false,
+       
+      
   
        }
-       this.handleName=this.handleName.bind(this);
-       this.handleType=this.handleType.bind(this);
-       this.handleCollab=this.handleCollab.bind(this);
-       this.handleCreateSong=this.handleCreateSong.bind(this);
+       
+      
       
     }
     
@@ -41,35 +37,7 @@ export default class Profile extends Component {
             }.bind(this));
     }
     
-    handleClose = () => this.setState({show:false});
-    handleShow = () => this.setState({show:true});
     
-    handleName(event){
-        this.setState({song_name: event.target.value});
-    }
-
-    handleType(event){
-        this.setState({song_type: event.target.value});
-    }
-
-    handleCollab(event){
-        this.setState({song_collaborators: event.target.value});
-    }
-    handleCreateSong(){
-        
-        // TODO: Write these info to the DB
-        //console.log(this.state.song_name);
-        //console.log(this.state.song_type);
-        //console.log(this.state.song_collaborators);
-        if(!this.state.song_exists)
-        {
-            this.props.history.push(`/coder/${this.state.song_name}`);
-        }
-        else{
-            //throw error saying this song already exists and open the new song
-        }
-    
-    }
    
     render(){
         

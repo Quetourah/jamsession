@@ -101,7 +101,6 @@ Server.default.waitForBoot({
     this.setState({
       code: `
 Server.default.waitForBoot({
-
   b = Buffer.alloc(s,44100 * 2, 2);
   
   SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
@@ -134,7 +133,7 @@ Server.default.waitForBoot({
   }
   componentDidMount(){
     // TODO: need to change the jammer list by pulling from the database 
-    this.setState({jammerlist:["baivab.pokhrel","testuser"]});
+    //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
     this.setState({songname: this.props.location.pathname.slice(7,)});
 
        
@@ -229,7 +228,6 @@ Server.default.waitForBoot({
     <div >
     <Alert className="BuildAlert" >Build Logs:
     <div>
-
     </div>
     </Alert>
     </div>
@@ -241,6 +239,3 @@ Server.default.waitForBoot({
     );
   }
 }
-  
-  
-  

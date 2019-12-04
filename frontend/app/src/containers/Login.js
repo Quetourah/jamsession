@@ -49,13 +49,15 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form">
           <FormGroup controlId="username" bsSize="large">
             <ControlLabel>Username</ControlLabel>
             <FormControl
+
+              name="username"
               type="text"
               autoFocus
-              name= "username"
+              
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -66,10 +68,11 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
-              name= 'password'
+              
             />
           </FormGroup>
           <LoaderButton
+            className="button"
             block
             bsSize="large"
             disabled={!this.validateForm()}

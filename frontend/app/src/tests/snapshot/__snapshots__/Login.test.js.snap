@@ -5,6 +5,7 @@ exports[`renders login page correctly 1`] = `
   className="Login"
 >
   <form
+    className="form"
     onSubmit={[Function]}
   >
     <div
@@ -38,14 +39,13 @@ exports[`renders login page correctly 1`] = `
       <input
         className="form-control"
         id="password"
-        name="password"
         onChange={[Function]}
         type="password"
         value=""
       />
     </div>
     <button
-      className="LoaderButton  btn btn-lg btn-default btn-block"
+      className="LoaderButton button btn btn-lg btn-default btn-block"
       disabled={true}
       type="submit"
     >
