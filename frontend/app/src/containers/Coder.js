@@ -185,7 +185,7 @@ Server.default.waitForBoot({
     <div>
       <ReactAudioPlayer src={this.state.audio_src} 
         autoPlay
-        controls
+        controls={false}
         block
       />
       <Button onClick={this.handleReloadOnSubmit} bsSize="large" block bsStyle={(this.state.render_player && "info") || "danger"}>{(this.state.render_player && "Jamming!") || "Jam!" }</Button>
