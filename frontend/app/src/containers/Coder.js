@@ -182,6 +182,7 @@ Server.default.waitForBoot({
     
     <Col xs={6} md={4}>
     <div>
+      <h2>{this.state.songname}</h2>
       <ReactAudioPlayer src={this.state.audio_src} 
         autoPlay
         controls={false}
