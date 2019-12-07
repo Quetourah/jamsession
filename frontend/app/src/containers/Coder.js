@@ -57,7 +57,7 @@ export default class Coder extends Component {
     this.handleStopButton();
     var formData = new FormData();
       formData.append("code", this.state.code);
-      axios.post("//ec2-3-133-237-193.us-east-2.compute.amazonaws.com:5000/interpret", formData, {
+      axios.post("https://c8a37aa6.ngrok.io/interpret", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
