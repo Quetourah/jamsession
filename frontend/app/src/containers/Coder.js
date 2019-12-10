@@ -57,13 +57,13 @@ export default class Coder extends Component {
     this.handleStopButton();
     var formData = new FormData();
       formData.append("code", this.state.code);
-      axios.post("https://32893e42.ngrok.io/interpret", formData, {
+      axios.post("https://bc7a1093.ngrok.io/interpret", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       }).then(resp => {
         this.setState({
-          audio_src: 'https://f6de7a05.ngrok.io/stream.mp3',
+          audio_src: 'https://5d81cc20.ngrok.io/stream.mp3',
           render_player: true
         });
       })
