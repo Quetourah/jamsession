@@ -22,7 +22,7 @@ export default class Coder extends Component {
     this.state =
     {
       songid:'',
-      code: '# type your code...',
+      code: '',
       add_jammer:'',
       jammerlist:[],
       show:false,
@@ -42,7 +42,7 @@ export default class Coder extends Component {
   }
   async editorDidMount(editor, monaco) {
     //console.log('editorDidMount', editor);
-    //console.log(this.state.songid);
+    console.log(this.state.songid);
     try {
       const apiData = await API.graphql(graphqlOperation(getSongs, { songid: this.state.songid }));
       
@@ -65,7 +65,7 @@ export default class Coder extends Component {
   onClick(){
     
     axios.post(
-      'http://127.0.0.1:5000/hello',
+      'http://localhost:5000/hello',
           { 'code': this.state.code},
           { headers: { 'ContentType': 'application/json' } }
     ).then((resp) => {

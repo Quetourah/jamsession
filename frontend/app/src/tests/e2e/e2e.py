@@ -1,4 +1,7 @@
-from pydub import AudioSegment
+
+import pydub
+from io import BytesIO
+import urllib.request
 
 def getcodelocally():
     with open('./test.sc', 'r') as f:
@@ -13,9 +16,11 @@ def getcodeserver():
 def getsoundlocal():
     pass
 def getsoundserver():
-    
+    req = urllib.request.Request("https://5d81cc20.ngrok.io/stream.mp3")
+    response = urllib.request.urlopen(req)
+    data = response.read()
 
-    sound = AudioSegment.from_mp3("thttps://5d81cc20.ngrok.io/stream.mp3")
+    sound = pydub.AudioSegment.from_mp3(BytesIO(data))
 
     # get raw audio data as a bytestring
     raw_data = sound.raw_data
@@ -25,8 +30,7 @@ def getsoundserver():
     sample_size = sound.sample_width
     # get channels
     channels = sound.channels
-
-    return channels
+    return raw_data
 
 
 if __name__ == "__main__":
@@ -34,7 +38,7 @@ if __name__ == "__main__":
     print("Steps to reproduce:\nStart the local server on jamsession/backend/server\nAssign the onClick Handler to the Jam Button")
     codefromeditor=getcodelocally()
     codefromserver=getcodeserver()
-    print(getsoundserver)
+    
 
 
 

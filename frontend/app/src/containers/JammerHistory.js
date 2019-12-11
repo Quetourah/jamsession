@@ -41,6 +41,8 @@ class JammerHistory extends Component {
     }
     handleClose = () => this.setState({ show: false });
     handleShow = () => this.setState({ show: true });
+     
+
     render() {
         
         return (
