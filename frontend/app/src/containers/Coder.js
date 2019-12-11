@@ -4,6 +4,11 @@ import ReactAudioPlayer from 'react-audio-player';
 import MonacoEditor from 'react-monaco-editor';
 import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup} from 'react-bootstrap';
 import './Coder.css'
+import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
+
+import {updateSongs} from "../graphql/Mutations";
+import {getSongs} from "../graphql/Queries";
+
 
 
 
@@ -16,7 +21,7 @@ export default class Coder extends Component {
     super(props);
     this.state =
     {
-      songname:'',
+      songid:'',
       code: '# type your code...',
       add_jammer:'',
       jammerlist:[],
@@ -30,11 +35,25 @@ export default class Coder extends Component {
     this.handleReloadOnSubmit=this.handleReloadOnSubmit.bind(this);
     this.handleStopButton=this.handleStopButton.bind(this);
     this.onClick=this.onClick.bind(this);
+    this.handleSave=this.handleSave.bind(this);
+
 
     
   }
-  editorDidMount(editor, monaco) {
-    console.log('editorDidMount', editor);
+  async editorDidMount(editor, monaco) {
+    //console.log('editorDidMount', editor);
+    //console.log(this.state.songid);
+    try {
+      const apiData = await API.graphql(graphqlOperation(getSongs, { songid: this.state.songid }));
+      
+      //console.log(apiData);
+      const code = apiData.data.getSongs.code;
+      //console.log(code);
+      this.setState({code:code});
+  } catch (err) {
+      console.log('error: ', err);
+  }
+    
     
   }
   
@@ -99,6 +118,7 @@ export default class Coder extends Component {
         });
       `
     })
+    
   };
   handleSampleCode2 = () => {
     this.setState({
@@ -124,14 +144,29 @@ export default class Coder extends Component {
     console.log(this.state.add_jammer);
   }
 
-  handleSave(){
+  async handleSave(){
     //TODO:  need to do a graph QL call to the DB to pull all the users and list
     //them
+    
+        try {
+            //const song = { title }
+            //const songs = [...this.state.songs, song]
+            //this.setState({ songs, title: ''})
+            await API.graphql(graphqlOperation(updateSongs, { input: {
+              songid: this.state.songid,
+              code: this.state.code,
+            } }))
+            console.log('song successfully updated!');
+            //Profile.props.history.push(`/coder/${this.state.title}`);
+        } catch (err) {
+            console.log('error: ', err);
+        }
+    
   }
-  componentDidMount(){
+  componentWillMount(){
     // TODO: need to change the jammer list by pulling from the database 
     //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
-    this.setState({songname: this.props.location.pathname.slice(7,)});
+    this.setState({songid: this.props.location.pathname.slice(7,)});
 
        
    

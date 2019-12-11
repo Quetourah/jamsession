@@ -128,7 +128,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody key={i}>
                                 <tr>
-                                    <td><a href={`/coder/`+rest.title}>{rest.title}</a></td>
+                                    <td><a href={`/coder/${rest.songid}`}>{rest.title}</a></td>
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>
