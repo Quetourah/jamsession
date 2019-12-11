@@ -13,3 +13,11 @@
 
 ### Starting the Core Service:
 1. See README.MD inside `jamsession_core`
+
+### Jam Session Core:
+
+#### High Level Description
+This is a Docker container that hosts a basic Flask script that pipes the code of whatever the user has drafted on the frontend and send it to sclang/Supercollider to be interpreted and generate the sound. The sound generated in the container is being streamed to a socket. The socket can be played with an HTML5 media player. 
+
+#### More details about the implementation:
+After weeks of tweaking and messing around with running Supercollider and Foxdot headless, we have abandoned Foxdot integration even though it is the most popular live coding platform.
