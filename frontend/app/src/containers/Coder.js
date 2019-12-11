@@ -29,6 +29,8 @@ export default class Coder extends Component {
     this.handleCollab=this.handleCollab.bind(this);
     this.handleReloadOnSubmit=this.handleReloadOnSubmit.bind(this);
     this.handleStopButton=this.handleStopButton.bind(this);
+    this.onClick=this.onClick.bind(this);
+
     
   }
   editorDidMount(editor, monaco) {
@@ -42,8 +44,9 @@ export default class Coder extends Component {
     
   }
   onClick(){
+    
     axios.post(
-      'http://localhost:5000/hello',
+      'http://127.0.0.1:5000/hello',
           { 'code': this.state.code},
           { headers: { 'ContentType': 'application/json' } }
     ).then((resp) => {

@@ -14,6 +14,11 @@ def hello():
     if request.method == 'POST':
         value = request.get_json().get('code')
         print(value)
+        with open('../../frontend/app/src/tests/e2e/test.sc', 'w+') as f:
+            f.truncate(0) # erase everything
+            f.write(value)
+        
+        
         return jsonify({'code':value})
 
 if __name__ == "__main__":
