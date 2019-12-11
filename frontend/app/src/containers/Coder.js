@@ -57,13 +57,13 @@ export default class Coder extends Component {
     this.handleStopButton();
     var formData = new FormData();
       formData.append("code", this.state.code);
-      axios.post("http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:5000/interpret", formData, {
+      axios.post("https://bc7a1093.ngrok.io/interpret", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       }).then(resp => {
         this.setState({
-          audio_src: 'http://ec2-3-133-237-193.us-east-2.compute.amazonaws.com:8000/stream.mp3',
+          audio_src: 'https://5d81cc20.ngrok.io/stream.mp3',
           render_player: true
         });
       })
@@ -85,36 +85,30 @@ export default class Coder extends Component {
   handleSampleCode1 = () => {
     this.setState({
       code: `
-Server.default.waitForBoot({
-{
-  ({RHPF.ar(OnePole.ar(BrownNoise.ar, 0.99), LPF.ar(BrownNoise.ar, 14)
-  * 400 + 500, 0.03, 0.003)}!2)
-  + ({RHPF.ar(OnePole.ar(BrownNoise.ar, 0.99), LPF.ar(BrownNoise.ar, 20)
-  * 800 + 1000, 0.03, 0.005)}!2)
-  * 4
-  }.play
-}
-);`
+      Server.default.waitForBoot({
+        {
+        ({RHPF.ar(OnePole.ar(BrownNoise.ar, 0.99), LPF.ar(BrownNoise.ar, 14)
+        * 400 + 500, 0.03, 0.003)}!2)
+        + ({RHPF.ar(OnePole.ar(BrownNoise.ar, 0.99), LPF.ar(BrownNoise.ar, 20)
+        * 800 + 1000, 0.03, 0.005)}!2)
+        * 4
+        }.play
+        });
+      `
     })
   };
   handleSampleCode2 = () => {
     this.setState({
       code: `
-Server.default.waitForBoot({
-  b = Buffer.alloc(s,44100 * 2, 2);
-  
-  SynthDef("help-PingPong",{ arg out=0,bufnum=0,feedback=0.5,delayTime=0.2;
-      var left, right;
-      left = Decay2.ar(Impulse.ar(0.7, 0.25), 0.01, 0.25,
-          SinOsc.ar(SinOsc.kr(3.7,0,200,500)));
-      right = Decay2.ar(Impulse.ar(0.5, 0.25), 0.01, 0.25,
-          Resonz.ar(PinkNoise.ar(4), SinOsc.kr(2.7,0,1000,2500), 0.2));
-  
-      Out.ar(0,
-          PingPong.ar(bufnum, [left,right], delayTime, feedback, 1)
-      )
-  }).play(s,[\\out, 0, \\bufnum, b.bufnum,\\feedback,0.5,\\delayTime,0.1]);
-  });`
+      Server.default.waitForBoot
+      ({
+        play{
+          x=SinOsc;
+          y=LFNoise0;
+          a=y.ar(8);
+          (x.ar(Pulse.ar(1)*24)+x.ar(90+(a*90))+MoogFF.ar(Saw.ar(y.ar(4,333,666)),a*XLine.ar(1,39,99,99,0,2)))!2/3
+        }
+        });`
     })
   };
   handleClose = () => this.setState({show:false});
@@ -220,17 +214,12 @@ Server.default.waitForBoot({
     </div>
     
     <div >
-      <Alert >Jammer's:
+      <Alert className="jammers" >Jammer's:
        {jammers}
     </Alert>
     </div>
     
-    <div >
-    <Alert className="BuildAlert" >Build Logs:
-    <div>
-    </div>
-    </Alert>
-    </div>
+    
     
     </Col>
     </Row>
