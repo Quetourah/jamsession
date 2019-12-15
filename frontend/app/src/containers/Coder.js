@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import MonacoEditor from 'react-monaco-editor';
-import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup} from 'react-bootstrap';
+import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup,ButtonGroup} from 'react-bootstrap';
 import './Coder.css'
 import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
 
-import {updateSongs} from "../graphql/Mutations";
+import {updateSongs, deleteSongs} from "../graphql/Mutations";
 import {getSongs} from "../graphql/Queries";
+import { config } from 'aws-sdk/global';
 
 
 
@@ -28,7 +29,8 @@ export default class Coder extends Component {
       show:false,
       audio_src: '',
       render_player: false,
-      stop_player: false
+      stop_player: false,
+      isOpen: false
      };
     this.handleAddJammer=this.handleAddJammer.bind(this);
     this.handleCollab=this.handleCollab.bind(this);
@@ -168,10 +170,30 @@ export default class Coder extends Component {
     // TODO: need to change the jammer list by pulling from the database
     //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
     this.setState({songid: this.props.location.pathname.slice(7,)});
-
-
-
   }
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  toggleClose = () => { this.setState({ isOpen: false }) };
+  async handleDelete() {
+    try {
+      //const songs = [...this.state.songs]
+      await API.graphql(graphqlOperation(deleteSongs, {
+        input: {
+          songid: this.state.songid
+        }
+      }));
+      this.props.history.push(`/profile/${this.state.username}`);
+      console.log('song successfully deleted!');
+    } catch (err) {
+      console.log('error: ', err);
+    }
+  }
+
+  //render
   render() {
     const code = this.state.code;
     const options = {
@@ -211,6 +233,7 @@ export default class Coder extends Component {
         editorDidMount={this.editorDidMount.bind(this)}
 
       />
+      <span></span>
       </Col>
 
     <Col xs={6} md={4}>
@@ -220,8 +243,11 @@ export default class Coder extends Component {
         controls={false}
         block
       />
-      <Button onClick={this.handleReloadOnSubmit} bsSize="large" block bsStyle={(this.state.render_player && "info") || "danger"}>{(this.state.render_player && "Jamming!") || "Jam!" }</Button>
-      <Button onClick={this.handleStopButton} bsSize="large" block bsStyle="danger">Stop</Button>
+      <ButtonGroup justified>
+      <Button onClick={this.handleReloadOnSubmit} href="#" bsSize="large" bsStyle={(this.state.render_player && "info") || "primary"}>{(this.state.render_player && "Jamming!") || "Jam!" }</Button>
+      <Button onClick={this.handleStopButton} href="#" bsSize="large" bsStyle="danger">Stop</Button>
+      </ButtonGroup>
+      <br></br>
       <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
       <Button onClick={this.handleShow} bsSize="large" block bsStyle="danger">Add Jammer</Button>
       <Button onClick={this.handleSampleCode1} bsSize="large" block bsStyle="secondary">Sample Code 1</Button>
@@ -257,12 +283,31 @@ export default class Coder extends Component {
        {jammers}
     </Alert>
     </div>
-
-
-
     </Col>
     </Row>
+    <Row>
+            <Col xs={4} md={2}>
+              <br></br>
+              <Button onClick={this.toggleModal} block bsSize="large"bsStyle="danger">Delete</Button>
+      </Col>
+    </Row>
     </Grid>
+        <div>
+          <Modal show={this.state.isOpen}>
+            <Modal.Header closeButton>
+              <Modal.Title>DELETE A SONG</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <p>Are you sure you want to delete this song?</p>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.toggleClose}>Close</Button>
+              <Button variant="danger" onClick={()=>{this.handleDelete();}}>Delete Song</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
     </div>
     );
   }

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "./Profile.css";
-import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
-import { Row, Col, /*Image, ListGroup, ListGroupItem,*/ Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
+import {API, graphqlOperation} from 'aws-amplify';
+import { Row, Col,Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
 import {listSongs} from "../graphql/Queries";
-import {createSongs, deleteSongs} from "../graphql/Mutations";
+import {createSongs} from "../graphql/Mutations";
 
 class JammerHistory extends Component {
     state = {
@@ -40,30 +40,8 @@ class JammerHistory extends Component {
             console.log('error: ', err);
         }
     }
-    async handleDelete() {
-        try {
-            //const song = { title }
-            //const songs = [...this.state.songs, song]
-            //this.setState({ songs, title: ''})
-            await API.graphql(graphqlOperation(deleteSongs, {
-                input: {
-                    songid: this.state.songid
-                }
-            }))
-            console.log('song successfully deleted!');
-        } catch (err) {
-            console.log('error: ', err);
-        }
-
-    }
-
     handleClose = () => this.setState({ show: false });
-    handleShow = () => this.setState({ show: true });
-    toggleModal = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
+    handleShow = () => this.setState({ show: true});
     toggleClose = () => {this.setState({isOpen: false})};
     toggleActive = i => {
         if (i === this.state.isActive) {
@@ -143,22 +121,6 @@ class JammerHistory extends Component {
                     </Col>
                     </Row>
                     </div>
-                <div>
-                        <Modal show={this.state.isOpen}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>DELETE A SONG</Modal.Title>
-                        </Modal.Header>
-
-                        <Modal.Body>
-                            <p>Are you sure you want to delete {} ?</p>
-                        </Modal.Body>
-
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={this.toggleClose}>Close</Button>
-                            <Button variant="danger">Delete Song</Button>
-                        </Modal.Footer>
-                    </Modal>
-                </div>
 
                 <div>
                 <h2>Jammer History</h2>
@@ -177,15 +139,16 @@ class JammerHistory extends Component {
                     {
                         this.state.songs.map((rest, i) => (
                             <tbody>
-                                <tr key={i} style={this.state.isActive === i ? { background: '#DAF8FC' } : { background: 'white' }}
-                                    onDoubleClick={() =>{this.toggleActive(i); this.toggleModal();}}>
+                                <tr key={rest.songid} style={this.state.isActive === i ? { background: '#DAF8FC' } : { background: 'white' }}
+                                    onMouseOver={()=>{this.toggleActive(i);}}>
 
                                     <td><a href={`/coder/${rest.songid}`}>{rest.title}</a></td>
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>
                             </tbody>
-                        ))
+
+                    ))
                     }
 
                 </Table>
