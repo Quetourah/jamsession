@@ -11,7 +11,8 @@ class JammerHistory extends Component {
             type:'public',
             collaborators:'',
             songs: [],
-            isActive: null
+            isActive: null,
+            isOpen: false
     }
     async componentDidMount() {
         try {
@@ -58,8 +59,13 @@ class JammerHistory extends Component {
 
     handleClose = () => this.setState({ show: false });
     handleShow = () => this.setState({ show: true });
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+    toggleClose = () => {this.setState({isOpen: false})};
     toggleActive = i => {
-        //Remove the if statement if you don't want to unselect an already selected item
         if (i === this.state.isActive) {
             this.setState({
                 isActive: null
@@ -137,7 +143,22 @@ class JammerHistory extends Component {
                     </Col>
                     </Row>
                     </div>
+                <div>
+                        <Modal show={this.state.isOpen}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>DELETE A SONG</Modal.Title>
+                        </Modal.Header>
 
+                        <Modal.Body>
+                            <p>Are you sure you want to delete {this.state.title} ?</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={this.toggleClose}>Close</Button>
+                            <Button variant="danger">Delete Song</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
 
                 <div>
                 <h2>Jammer History</h2>
@@ -157,7 +178,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody>
                                 <tr key={i} style={this.state.isActive === i ? { background: '#DAF8FC' } : { background: 'white' }}
-                                    onClick={() => this.toggleActive(i)}>
+                                    onClick={() =>{this.toggleActive(i); this.toggleModal()}}>
 
                                     <td><a href={`/coder/${rest.songid}`}>{rest.title}</a></td>
                                     <td>Privacy</td>
