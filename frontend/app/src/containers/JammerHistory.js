@@ -150,7 +150,7 @@ class JammerHistory extends Component {
                         </Modal.Header>
 
                         <Modal.Body>
-                            <p>Are you sure you want to delete {this.state.title} ?</p>
+                            <p>Are you sure you want to delete {} ?</p>
                         </Modal.Body>
 
                         <Modal.Footer>
@@ -178,7 +178,7 @@ class JammerHistory extends Component {
                         this.state.songs.map((rest, i) => (
                             <tbody>
                                 <tr key={i} style={this.state.isActive === i ? { background: '#DAF8FC' } : { background: 'white' }}
-                                    onClick={() =>{this.toggleActive(i); this.toggleModal()}}>
+                                    onDoubleClick={() =>{this.toggleActive(i); this.toggleModal();}}>
 
                                     <td><a href={`/coder/${rest.songid}`}>{rest.title}</a></td>
                                     <td>Privacy</td>
