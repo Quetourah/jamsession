@@ -1,17 +1,17 @@
-import React,{Component} from "react";
+import React, {Component} from "react";
 import "./Profile.css";
 import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
 import { Row, Col, /*Image, ListGroup, ListGroupItem,*/ Table,Button,Modal,InputGroup,FormControl} from 'react-bootstrap';
 import {listSongs} from "../graphql/Queries";
-import {createSongs} from "../graphql/Mutations";
-
+import {createSongs, deleteSongs} from "../graphql/Mutations";
 
 class JammerHistory extends Component {
-    state = { 
+    state = {
             title: '',
             type:'public',
-            collaborators:'', 
-            songs: []
+            collaborators:'',
+            songs: [],
+            isActive: null
     }
     async componentDidMount() {
         try {
@@ -39,16 +39,45 @@ class JammerHistory extends Component {
             console.log('error: ', err);
         }
     }
+    async handleDelete() {
+        try {
+            //const song = { title }
+            //const songs = [...this.state.songs, song]
+            //this.setState({ songs, title: ''})
+            await API.graphql(graphqlOperation(deleteSongs, {
+                input: {
+                    songid: this.state.songid
+                }
+            }))
+            console.log('song successfully deleted!');
+        } catch (err) {
+            console.log('error: ', err);
+        }
+
+    }
+
     handleClose = () => this.setState({ show: false });
     handleShow = () => this.setState({ show: true });
+    toggleActive = i => {
+        //Remove the if statement if you don't want to unselect an already selected item
+        if (i === this.state.isActive) {
+            this.setState({
+                isActive: null
+            });
+        } else {
+            this.setState({
+                isActive: i
+            });
+        }
+    };
     render() {
-        
+
         return (
-            
+
             <div className="JammerHistory">
-               
+
                     <div>
-                    <Row>    
+                    <Row>
                     <Col s={6} md={4}>
                         <Button variant="primary" onClick={this.handleShow} bsSize="large" block bsStyle="danger">
                             Create Song
@@ -105,11 +134,11 @@ class JammerHistory extends Component {
                                 </Button>
                             </Modal.Footer>
                         </Modal>
-                    </Col>  
+                    </Col>
                     </Row>
                     </div>
 
-                
+
                 <div>
                 <h2>Jammer History</h2>
                 <Table striped bordered responsive  >
@@ -123,16 +152,14 @@ class JammerHistory extends Component {
 
                         </tr>
                     </thead>
-                   
+
                     {
                         this.state.songs.map((rest, i) => (
-                            <tbody key={i}>
-                                <tr>
+                            <tbody>
+                                <tr key={i} style={this.state.isActive === i ? { background: '#DAF8FC' } : { background: 'white' }}
+                                    onClick={() => this.toggleActive(i)}>
 
                                     <td><a href={`/coder/${rest.songid}`}>{rest.title}</a></td>
-
-                                    
-
                                     <td>Privacy</td>
                                     <td>Jammers</td>
                                 </tr>
@@ -142,8 +169,9 @@ class JammerHistory extends Component {
 
                 </Table>
             </div>
-            </div>)        
-        
+            </div>)
+
     }
 }
+
 export default JammerHistory;

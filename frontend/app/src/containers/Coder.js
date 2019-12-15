@@ -13,11 +13,11 @@ import {getSongs} from "../graphql/Queries";
 
 
 export default class Coder extends Component {
-  
-  
-    
+
+
+
   constructor(props) {
-    
+
     super(props);
     this.state =
     {
@@ -38,14 +38,14 @@ export default class Coder extends Component {
     this.handleSave=this.handleSave.bind(this);
 
 
-    
+
   }
   async editorDidMount(editor, monaco) {
     //console.log('editorDidMount', editor);
     //console.log(this.state.songid);
     try {
       const apiData = await API.graphql(graphqlOperation(getSongs, { songid: this.state.songid }));
-      
+
       //console.log(apiData);
       const code = apiData.data.getSongs.code;
       //console.log(code);
@@ -53,17 +53,17 @@ export default class Coder extends Component {
   } catch (err) {
       console.log('error: ', err);
   }
-    
-    
+
+
   }
-  
-  onChange(newValue, e) 
+
+  onChange(newValue, e)
   {
     this.setState({code:newValue});
-    
+
   }
   onClick(){
-    
+
     axios.post(
       'http://127.0.0.1:5000/hello',
           { 'code': this.state.code},
@@ -73,7 +73,7 @@ export default class Coder extends Component {
     }).catch((err)=> {
       console.log(err)
     })
-    
+
   }
   handleReloadOnSubmit = () => {
     this.handleStopButton();
@@ -118,7 +118,7 @@ export default class Coder extends Component {
         });
       `
     })
-    
+
   };
   handleSampleCode2 = () => {
     this.setState({
@@ -147,7 +147,7 @@ export default class Coder extends Component {
   async handleSave(){
     //TODO:  need to do a graph QL call to the DB to pull all the users and list
     //them
-    
+
         try {
             //const song = { title }
             //const songs = [...this.state.songs, song]
@@ -161,15 +161,16 @@ export default class Coder extends Component {
         } catch (err) {
             console.log('error: ', err);
         }
-    
+
   }
+
   componentWillMount(){
-    // TODO: need to change the jammer list by pulling from the database 
+    // TODO: need to change the jammer list by pulling from the database
     //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
     this.setState({songid: this.props.location.pathname.slice(7,)});
 
-       
-   
+
+
   }
   render() {
     const code = this.state.code;
@@ -177,19 +178,19 @@ export default class Coder extends Component {
       selectOnLineNumbers: true
     };
 
-    const jammers = this.state.jammerlist.map((jammerlist) => 
+    const jammers = this.state.jammerlist.map((jammerlist) =>
     {
-        
+
         return (
-            
+
           <div key={jammerlist}>
           <ul>
             <li>
             {jammerlist}
           </li>
           </ul>
-    
-    
+
+
           </div >
                 );
         });
@@ -208,13 +209,13 @@ export default class Coder extends Component {
         options={options}
         onChange={this.onChange.bind(this)}
         editorDidMount={this.editorDidMount.bind(this)}
-        
+
       />
       </Col>
-    
+
     <Col xs={6} md={4}>
     <div>
-      <ReactAudioPlayer src={this.state.audio_src} 
+      <ReactAudioPlayer src={this.state.audio_src}
         autoPlay
         controls={false}
         block
@@ -232,12 +233,12 @@ export default class Coder extends Component {
                                 <InputGroup >
                                       <h3>Jammer Name:</h3>
                                     <FormControl
-                                        
+
                                         placeholder="Jammer Name"
                                         value={this.state.add_jammer}
                                         onChange={this.handleAddJammer}
                                         />
-                                    
+
                                     </InputGroup >
                                 <Modal.Footer>
                                 <Button variant="secondary" onClick={this.handleClose}>
@@ -248,17 +249,17 @@ export default class Coder extends Component {
                                 </Button>
                             </Modal.Footer>
                             </Modal>
-      
+
     </div>
-    
+
     <div >
       <Alert className="jammers" >Jammer's:
        {jammers}
     </Alert>
     </div>
-    
-    
-    
+
+
+
     </Col>
     </Row>
     </Grid>
