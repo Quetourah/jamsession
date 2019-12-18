@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import MonacoEditor from 'react-monaco-editor';
-import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup} from 'react-bootstrap';
+import { Button,Grid, Row, Col,Alert,Modal, FormControl,InputGroup,ButtonGroup} from 'react-bootstrap';
 import './Coder.css'
 import /*Amplify, {Auth,*/{API, graphqlOperation} from 'aws-amplify';
 
-import {updateSongs} from "../graphql/Mutations";
+import {updateSongs, deleteSongs} from "../graphql/Mutations";
 import {getSongs} from "../graphql/Queries";
+import { config } from 'aws-sdk/global';
 
 
 
 
 export default class Coder extends Component {
-  
-  
-    
+
+
+
   constructor(props) {
-    
+
     super(props);
     this.state =
     {
@@ -28,7 +29,8 @@ export default class Coder extends Component {
       show:false,
       audio_src: '',
       render_player: false,
-      stop_player: false
+      stop_player: false,
+      isOpen: false
      };
     this.handleAddJammer=this.handleAddJammer.bind(this);
     this.handleCollab=this.handleCollab.bind(this);
@@ -38,14 +40,14 @@ export default class Coder extends Component {
     this.handleSave=this.handleSave.bind(this);
 
 
-    
+
   }
   async editorDidMount(editor, monaco) {
     //console.log('editorDidMount', editor);
     //console.log(this.state.songid);
     try {
       const apiData = await API.graphql(graphqlOperation(getSongs, { songid: this.state.songid }));
-      
+
       //console.log(apiData);
       const code = apiData.data.getSongs.code;
       //console.log(code);
@@ -53,17 +55,17 @@ export default class Coder extends Component {
   } catch (err) {
       console.log('error: ', err);
   }
-    
-    
+
+
   }
-  
-  onChange(newValue, e) 
+
+  onChange(newValue, e)
   {
     this.setState({code:newValue});
-    
+
   }
   onClick(){
-    
+
     axios.post(
       'http://127.0.0.1:5000/hello',
           { 'code': this.state.code},
@@ -73,7 +75,7 @@ export default class Coder extends Component {
     }).catch((err)=> {
       console.log(err)
     })
-    
+
   }
   handleReloadOnSubmit = () => {
     this.handleStopButton();
@@ -118,7 +120,7 @@ export default class Coder extends Component {
         });
       `
     })
-    
+
   };
   handleSampleCode2 = () => {
     this.setState({
@@ -147,7 +149,7 @@ export default class Coder extends Component {
   async handleSave(){
     //TODO:  need to do a graph QL call to the DB to pull all the users and list
     //them
-    
+
         try {
             //const song = { title }
             //const songs = [...this.state.songs, song]
@@ -161,35 +163,56 @@ export default class Coder extends Component {
         } catch (err) {
             console.log('error: ', err);
         }
-    
+
   }
+
   componentWillMount(){
-    // TODO: need to change the jammer list by pulling from the database 
+    // TODO: need to change the jammer list by pulling from the database
     //this.setState({jammerlist:["baivab.pokhrel","testuser"]});
     this.setState({songid: this.props.location.pathname.slice(7,)});
-
-       
-   
   }
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  toggleClose = () => { this.setState({ isOpen: false }) };
+  async handleDelete() {
+    try {
+      //const songs = [...this.state.songs]
+      await API.graphql(graphqlOperation(deleteSongs, {
+        input: {
+          songid: this.state.songid
+        }
+      }));
+      this.props.history.push(`/profile/${this.state.username}`);
+      console.log('song successfully deleted!');
+    } catch (err) {
+      console.log('error: ', err);
+    }
+  }
+
+  //render
   render() {
     const code = this.state.code;
     const options = {
       selectOnLineNumbers: true
     };
 
-    const jammers = this.state.jammerlist.map((jammerlist) => 
+    const jammers = this.state.jammerlist.map((jammerlist) =>
     {
-        
+
         return (
-            
+
           <div key={jammerlist}>
           <ul>
             <li>
             {jammerlist}
           </li>
           </ul>
-    
-    
+
+
           </div >
                 );
         });
@@ -208,19 +231,23 @@ export default class Coder extends Component {
         options={options}
         onChange={this.onChange.bind(this)}
         editorDidMount={this.editorDidMount.bind(this)}
-        
+
       />
+      <span></span>
       </Col>
-    
+
     <Col xs={6} md={4}>
     <div>
-      <ReactAudioPlayer src={this.state.audio_src} 
+      <ReactAudioPlayer src={this.state.audio_src}
         autoPlay
         controls={false}
         block
       />
-      <Button onClick={this.handleReloadOnSubmit} bsSize="large" block bsStyle={(this.state.render_player && "info") || "danger"}>{(this.state.render_player && "Jamming!") || "Jam!" }</Button>
-      <Button onClick={this.handleStopButton} bsSize="large" block bsStyle="danger">Stop</Button>
+      <ButtonGroup justified>
+      <Button onClick={this.handleReloadOnSubmit} href="#" bsSize="large" bsStyle={(this.state.render_player && "info") || "primary"}>{(this.state.render_player && "Jamming!") || "Jam!" }</Button>
+      <Button onClick={this.handleStopButton} href="#" bsSize="large" bsStyle="danger">Stop</Button>
+      </ButtonGroup>
+      <br></br>
       <Button onClick={this.handleSave} bsSize="large" block bsStyle="danger">Save</Button>
       <Button onClick={this.handleShow} bsSize="large" block bsStyle="danger">Add Jammer</Button>
       <Button onClick={this.handleSampleCode1} bsSize="large" block bsStyle="secondary">Sample Code 1</Button>
@@ -232,12 +259,12 @@ export default class Coder extends Component {
                                 <InputGroup >
                                       <h3>Jammer Name:</h3>
                                     <FormControl
-                                        
+
                                         placeholder="Jammer Name"
                                         value={this.state.add_jammer}
                                         onChange={this.handleAddJammer}
                                         />
-                                    
+
                                     </InputGroup >
                                 <Modal.Footer>
                                 <Button variant="secondary" onClick={this.handleClose}>
@@ -248,20 +275,39 @@ export default class Coder extends Component {
                                 </Button>
                             </Modal.Footer>
                             </Modal>
-      
+
     </div>
-    
+
     <div >
       <Alert className="jammers" >Jammer's:
        {jammers}
     </Alert>
     </div>
-    
-    
-    
     </Col>
     </Row>
+    <Row>
+            <Col xs={4} md={2}>
+              <br></br>
+              <Button onClick={this.toggleModal} block bsSize="large"bsStyle="danger">Delete</Button>
+      </Col>
+    </Row>
     </Grid>
+        <div>
+          <Modal show={this.state.isOpen}>
+            <Modal.Header closeButton>
+              <Modal.Title>DELETE A SONG</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <p>Are you sure you want to delete this song?</p>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.toggleClose}>Close</Button>
+              <Button variant="danger" onClick={()=>{this.handleDelete();}}>Delete Song</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
     </div>
     );
   }
