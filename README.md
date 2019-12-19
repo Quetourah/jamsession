@@ -1,18 +1,51 @@
-# jamsession is 
-- a multi user collaborative platform where you can live code music in a web browser in real time and further release it to the public
-- an app for enthusiast musicians who want to learn music but are falling back due to lack of proper resources
-- an app for lyricist, composer and producer where they can work collaboratively to produce a fine piece of music
-- an app for anyone who loves music and are ready to kick off their musical journey online
+# Jam Session - [Live](https://jolly-ardinghelli-5a659c.netlify.com/)
+ Jam Session a multi user collaborative platform where you can live code music in a web browser in real time. You can start live app by clicking [here](https://jolly-ardinghelli-5a659c.netlify.com/).
 
+
+
+### Folder Structure:
+```
+frontend/app : contains all of our react files
+backend/server: contains a Flask server for testing
+images/wikis: assets for wikis
+jamsession_core : files to start the core services using Docker
+
+```
 
 ### Local Development:
-1. Clone repo
-1. `cd app`
-1. `yarn install`
-1. `yarn start`
+- Clone repo into the local device
+-  Get inside the folder you just created by cloning the repository by typing: <br />
 
-### Starting the Core Service:
-1. See README.MD inside `jamsession_core`
+    `cd jamsession`
+- Inside you will find three main folders:
+    - backend
+    - frontend
+    - jamsession_core
+- Enter frontend/app folder by typing: <br />
+
+    ```cd frontend/app```
+- You need to install the node modules before running the app, enter the following command to install the modules:
+
+    ``` npm install```
+- In this folder type the following command to start the local development:<br/> 
+
+    ```npm start```<br />
+
+    Runs the app in the development mode.<br />
+    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.The page will reload if you make edits.You will also see any lint errors in the console.
+
+- Type the following command to run the all tests:<br/>
+
+    ```npm test```
+
+    Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information. All the tests are located in src/tests
+
+
+- Jamsession core is setup in a remote server, if you wan to run it locally follow this [README](https://github.com/Quetourah/jamsession/blob/master/jamsession_core/README.md)
+
+
+
+
 
 ### Jam Session Core:
 
