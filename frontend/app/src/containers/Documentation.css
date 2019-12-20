@@ -1,0 +1,18 @@
+a { 
+    color: #FF0000;
+ }
+
+.docs{
+    color: red;
+    font-size: 2em;
+}
+.usefullinks{
+    margin: 10px;
+    padding: 10px;
+    color: red;
+}
+.contact{
+    margin: 10px;
+    padding: 10px;
+    color: red;
+}

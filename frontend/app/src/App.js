@@ -84,7 +84,7 @@ class App extends Component {
               {this.state.isAuthenticated
                 ? <Nav pullRight> 
                     
-                    <NavItem href="https://foxdot.org/docs/" target="_blank">Documentation</NavItem>
+                    <NavItem href="/documentation">Documentation</NavItem>
                     <NavItem onClick={this.handleProfile.bind(this)}>Profile</NavItem> 
                     <NavItem onClick={this.handleLogout}>Logout</NavItem> 
                  </Nav>
