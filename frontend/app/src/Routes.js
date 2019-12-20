@@ -11,6 +11,8 @@ const AsyncLogin = asyncComponent(() => import("./containers/Login"));
 const AsyncSignup = asyncComponent(() => import("./containers/Signup"));
 const AsyncProfile = asyncComponent(() => import("./containers/Profile"));
 const AsyncCoder = asyncComponent(() => import("./containers/Coder"));
+const AsyncDocs = asyncComponent(() => import("./containers/Documentation"));
+
 const AsyncNotFound = asyncComponent(() => import("./containers/NotFound"));
 
 export default ({ childProps }) =>
@@ -32,6 +34,12 @@ export default ({ childProps }) =>
       path="/profile/:username"
       exact
       component={AsyncProfile}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/documentation"
+      exact
+      component={AsyncDocs}
       props={childProps}
     />
 
