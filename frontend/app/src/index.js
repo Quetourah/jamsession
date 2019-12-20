@@ -15,7 +15,7 @@ Amplify.configure({
     userPoolId: config.cognito.USER_POOL_ID,
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID,
-   
+
   }
 });
 
@@ -23,25 +23,8 @@ let myAppConfig = {
   aws_appsync_graphqlEndpoint: config.graphql.URL,
   aws_appsync_region: config.graphql.REGION,
   aws_appsync_authenticationType: config.graphql.AUTHENTICATION_TYPE,
-  //aws_appsync_apiKey: "da2-of6krb3derdeze4t6lqjs44sii"
 };
 Amplify.configure(myAppConfig);
-  /*,
-  Storage: {
-    region: config.s3.REGION,
-    bucket: config.s3.BUCKET,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID
-  },
-  API: {
-    endpoints: [
-      {
-        name: "notes",
-        endpoint: config.graphql.URL,
-        region: config.graphql.REGION
-      }
-    ]
-  }*/
-
 
 monaco.editor.create(document.getElementById('root'), {
   value: 'console.log("Hello, world")',
