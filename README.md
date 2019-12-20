@@ -24,7 +24,7 @@ jamsession_core : files to start the core services using Docker
 - Enter frontend/app folder by typing: <br />
 
     ```cd frontend/app```
-- Update the `config.js` filr in the src folder with your database information. We used Amazon Web Services Cognito, AppSync Console, and DynamoDB.
+- Update the `config.js` file in the src folder with your database information. We used Amazon Web Services (AWS) Cognito, AppSync, and DynamoDB.
 
 - You need to install the node modules before running the app, enter the following command to install the modules:
 
