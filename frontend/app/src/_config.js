@@ -1,3 +1,5 @@
+//change this file's name from _config.js to config.js for app to work
+//Add your database information to retrieve data
 export default {
     cognito: {
         REGION: "",
