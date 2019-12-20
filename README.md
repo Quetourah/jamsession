@@ -1,5 +1,5 @@
-# Jam Session - [Live](https://festive-fermi-30464d.netlify.com/)
- Jam Session a multi user collaborative platform where you can live code music in a web browser in real time. You can start live app by clicking [here](https://festive-fermi-30464d.netlify.com/).
+# Jam Session - [Live](https://modest-mestorf-1cb857.netlify.com/login)
+ Jam Session a multi user collaborative platform where you can live code music in a web browser in real time. You can start live app by clicking [here](https://modest-mestorf-1cb857.netlify.com/login).
 
 
 
