@@ -109,3 +109,4 @@ ENV/
 # tests
 __snapshots__
 ./config.js
+frontend/app/src/config.js
